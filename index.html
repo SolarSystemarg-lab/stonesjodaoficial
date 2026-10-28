@@ -154,20 +154,17 @@ Quiero mi descuento!`);try{window.open(p,"_blank","noopener,noreferrer")}catch{w
   <script>(function(){function m(a){var h=a.getAttribute("href");if(!h)return;try{var u=new URL(h,document.baseURI);if(((u.protocol==="http:"||u.protocol==="https:")&&u.host!==location.host)||u.protocol==="mailto:"||u.protocol==="tel:"||u.protocol==="sms:"){a.target="_blank";a.rel="noopener noreferrer";}}catch(e){}}function s(){document.querySelectorAll("a[href]").forEach(m);}if(document.readyState!=="loading"){s();}else{document.addEventListener("DOMContentLoaded",s);}document.addEventListener("click",function(e){var a=e.target&&e.target.closest&&e.target.closest("a[href]");if(a){m(a);}},true);})();</script>
   <script type="application/json" data-clippy-inline-media-manifest="1">{"version":1,"slots":[]}</script>
 
-<!-- GOOGLE LOGIN PRO INTEGRADO EN HEADER - INICIO -->
+<!-- FIREBASE LOGIN PRO HEADER V2 - ROBUSTO LOCAL -->
 <style>
-  /* Estilo pro que matchea tu tienda */
   .sj-google-header-btn {
     display: flex; align-items: center; gap: 8px;
     border: 1px solid #2a2a2a; background: #141414;
-    padding: 8px 14px; height: 38px;
-    font-family: 'Bebas Neue', ui-sans-serif; 
-    font-size: 14px; letter-spacing: 0.08em;
+    padding: 0 14px; height: 38px;
+    font-size: 13px; font-weight: 700; letter-spacing: 0.06em;
     color: white; cursor: pointer; transition: all .2s;
-    border-radius: 2px;
+    border-radius: 2px; font-family: Inter, sans-serif;
   }
-  .sj-google-header-btn:hover { background: #1f1f1f; border-color: #3a3a3a; }
-  .sj-google-header-btn img { width: 16px; height: 16px; }
+  .sj-google-header-btn:hover { background: #1f1f1f; border-color: #E10600; }
   .sj-google-header-logged {
     display: flex; align-items: center; gap: 8px;
     border: 1px solid #2a2a2a; background: #141414;
@@ -176,141 +173,138 @@ Quiero mi descuento!`);try{window.open(p,"_blank","noopener,noreferrer")}catch{w
   }
   .sj-google-header-logged img { width: 24px; height: 24px; border-radius: 50%; }
   .sj-google-header-logged span { font-family: Inter, sans-serif; font-size: 11px; font-weight: 700; color: white; max-width: 90px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .sj-google-header-logged button { background: #222; color: white; border: 0; border-radius: 9999px; padding: 4px 10px; font-size: 10px; cursor: pointer; font-family: Inter; }
+  .sj-google-header-logged button { background: #222; color: white; border: 0; border-radius: 9999px; padding: 4px 10px; font-size: 10px; cursor: pointer; }
   .sj-google-header-logged button:hover { background: #E10600; }
-  .sj-google-header-logged .dot { width: 6px; height: 6px; background: #22c55e; border-radius: 50%; box-shadow: 0 0 6px #22c55e; animation: pulse 2s infinite; }
-  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.5} }
+  .sj-google-header-logged .dot { width: 6px; height: 6px; background: #22c55e; border-radius: 50%; box-shadow: 0 0 6px #22c55e; }
+  /* Fallback por si no encuentra header */
+  #sj-fallback-bar { position: fixed; bottom: 20px; right: 20px; z-index: 9999; display: none; }
+  #sj-fallback-bar.show { display: flex; }
 </style>
-<script src="https://accounts.google.com/gsi/client" async defer></script>
-<script>
-  (function(){
-    // Parse JWT
-    function parseJwt(token){
-      try{
-        var base64Url = token.split('.')[1];
-        var base64 = base64Url.replace(/-/g,'+').replace(/_/g,'/');
-        var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c){return '%'+('00'+c.charCodeAt(0).toString(16)).slice(-2)}).join(''));
-        return JSON.parse(jsonPayload);
-      }catch(e){return null;}
+
+<div id="sj-fallback-bar">
+  <button class="sj-google-header-btn" onclick="window.firebaseGoogleLogin && window.firebaseGoogleLogin()" style="background:white; color:black; border-radius:9999px; box-shadow:0 4px 20px rgba(0,0,0,0.4);">
+    <svg width="16" height="16" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+    ENTRAR CON GOOGLE
+  </button>
+</div>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyDEFgti6u0Y1mZGIbGESigiQXAqPYSc_aE",
+    authDomain: "stones-joda-rock.firebaseapp.com",
+    projectId: "stones-joda-rock",
+    storageBucket: "stones-joda-rock.firebasestorage.app",
+    messagingSenderId: "649980351819",
+    appId: "1:649980351819:web:8c6a13a4768c5d1ee084ce"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const provider = new GoogleAuthProvider();
+
+  window.firebaseGoogleLogin = async () => {
+    console.log("LOGIN CLICK");
+    try {
+      const result = await signInWithPopup(auth, provider);
+      console.log("LOGIN OK", result.user.email);
+      localStorage.setItem('firebase_user', JSON.stringify({uid: result.user.uid, name: result.user.displayName, email: result.user.email, photo: result.user.photoURL}));
+      applyLoggedState(result.user);
+    } catch(e){
+      console.error(e);
+      alert("Error: " + e.code + "\n" + e.message + "\n\nSi estas en file://, usa Live Server. Y agrega localhost en Firebase > Authentication > Settings > Authorized domains");
     }
+  };
 
-    // Crear elementos del header
-    function createLoginBtn(){
-      var btn = document.createElement('div');
-      btn.id = 'sj-google-login-root';
-      btn.innerHTML = `
-        <div id="g_id_onload" data-client_id="REEMPLAZA_CON_TU_CLIENT_ID.apps.googleusercontent.com" data-callback="handleGoogleCredential" data-auto_prompt="false"></div>
-        <div id="sj-google-btn-wrapper">
-          <button class="sj-google-header-btn" onclick="document.querySelector('.g_id_signin div[role=button]')?.click()">
-            <svg width="16" height="16" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
-            <span class="hidden md:inline">ENTRAR</span>
-            <span class="md:hidden">LOGIN</span>
-          </button>
-          <div class="g_id_signin" data-type="icon" data-size="large" data-theme="outline" data-text="signin_with" data-shape="circle" style="position:absolute; left:-9999px; opacity:0; pointer-events:none;"></div>
-        </div>
-      `;
-      return btn;
-    }
+  window.firebaseGoogleLogout = async () => {
+    await signOut(auth);
+    localStorage.removeItem('firebase_user');
+    var logged = document.getElementById('sj-google-logged-root');
+    if(logged) logged.remove();
+    document.getElementById('sj-fallback-bar')?.classList.remove('show');
+    injectHeader(true);
+  };
 
-    function createLoggedBtn(user){
-      var div = document.createElement('div');
-      div.id = 'sj-google-logged-root';
-      div.className = 'sj-google-header-logged';
-      div.innerHTML = `
-        <div class="dot"></div>
-        <img src="${user.picture || ''}" alt="">
-        <span>${(user.name || user.email || '').split(' ')[0]}</span>
-        <button onclick="googleLogout()">SALIR</button>
-      `;
-      return div;
-    }
+  function createLoggedElement(user){
+    var div = document.createElement('div');
+    div.id = 'sj-google-logged-root';
+    div.className = 'sj-google-header-logged';
+    var firstName = (user.displayName || user.email || 'USER').split(' ')[0];
+    div.innerHTML = `<div class="dot"></div><img src="${user.photoURL || ''}" alt=""><span>${firstName}</span><button onclick="firebaseGoogleLogout()">SALIR</button>`;
+    return div;
+  }
 
-    window.handleGoogleCredential = function(response){
-      var data = parseJwt(response.credential);
-      if(!data) return;
-      var user = { name: data.name, email: data.email, picture: data.picture, sub: data.sub };
-      localStorage.setItem('google_user', JSON.stringify(user));
-      localStorage.setItem('google_id_token', response.credential);
-      applyAuth(user);
-      window.dispatchEvent(new CustomEvent('google-login-success', {detail: user}));
-    };
+  function createLoginElement(){
+    var div = document.createElement('div');
+    div.id = 'sj-google-login-root';
+    div.style.display = 'flex';
+    div.innerHTML = `
+      <button class="sj-google-header-btn" onclick="firebaseGoogleLogin()">
+        <svg width="16" height="16" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+        <span>ENTRAR</span>
+      </button>
+    `;
+    return div;
+  }
 
-    function applyAuth(user){
-      var root = document.getElementById('sj-google-login-root');
-      var existingLogged = document.getElementById('sj-google-logged-root');
-      if(existingLogged) existingLogged.remove();
-      if(root) root.style.display = 'none';
-      
-      // Inyectar en header
-      var headerRight = document.querySelector('header div.flex.items-center.gap-2');
-      if(headerRight){
-        // Evitar duplicado
-        if(!document.getElementById('sj-google-logged-root')){
-          var loggedEl = createLoggedBtn(user);
-          // Insertar antes del boton carrito
-          headerRight.prepend(loggedEl);
-        }
+  function applyLoggedState(user){
+    var headerRight = document.querySelector('header div.flex.items-center.gap-2');
+    // Quitar fallback
+    document.getElementById('sj-fallback-bar')?.classList.remove('show');
+    if(headerRight){
+      var oldLogin = document.getElementById('sj-google-login-root');
+      if(oldLogin) oldLogin.remove();
+      var oldLogged = document.getElementById('sj-google-logged-root');
+      if(oldLogged) oldLogged.remove();
+      var el = createLoggedElement(user);
+      headerRight.prepend(el);
+    } else {
+      // Si no hay header, usar fallback
+      var fb = document.getElementById('sj-fallback-bar');
+      if(fb){
+        fb.innerHTML = '';
+        fb.appendChild(createLoggedElement(user));
+        fb.classList.add('show');
       }
     }
+  }
 
-    window.googleLogout = function(){
-      localStorage.removeItem('google_user');
-      localStorage.removeItem('google_id_token');
-      var logged = document.getElementById('sj-google-logged-root');
-      if(logged) logged.remove();
-      var loginRoot = document.getElementById('sj-google-login-root');
-      if(loginRoot) loginRoot.style.display = 'flex';
-      if(window.google && google.accounts) google.accounts.id.disableAutoSelect();
-    };
-
-    function injectIntoHeader(){
-      var headerRight = document.querySelector('header div.flex.items-center.gap-2');
-      if(!headerRight){
-        // Reintentar
-        setTimeout(injectIntoHeader, 300);
+  function injectHeader(force){
+    var headerRight = document.querySelector('header div.flex.items-center.gap-2');
+    console.log("Buscando header...", !!headerRight);
+    if(!headerRight){
+      // Si no encuentra header despues de varios intentos, mostrar fallback
+      var attempts = window._sjAttempts || 0;
+      window._sjAttempts = attempts + 1;
+      if(window._sjAttempts > 15){
+        console.log("Header no encontrado, mostrando fallback");
+        document.getElementById('sj-fallback-bar')?.classList.add('show');
         return;
       }
-      if(document.getElementById('sj-google-login-root')) return; // ya inyectado
-
-      var saved = localStorage.getItem('google_user');
-      if(saved){
-        try{
-          var user = JSON.parse(saved);
-          var loggedEl = createLoggedBtn(user);
-          headerRight.prepend(loggedEl);
-          return;
-        }catch(e){}
-      }
-      // No logueado, mostrar boton entrar
-      var loginEl = createLoginBtn();
-      headerRight.prepend(loginEl);
+      setTimeout(()=>injectHeader(), 600);
+      return;
     }
+    if(document.getElementById('sj-google-login-root') || document.getElementById('sj-google-logged-root')) return;
+    
+    var loginEl = createLoginElement();
+    headerRight.prepend(loginEl);
+    console.log("Boton inyectado en header");
+  }
 
-    // Iniciar cuando el DOM y React carguen
-    if(document.readyState === 'loading'){
-      document.addEventListener('DOMContentLoaded', function(){ setTimeout(injectIntoHeader, 800); });
-    } else {
-      setTimeout(injectIntoHeader, 800);
+  // Iniciar con delay para que React renderice
+  setTimeout(injectHeader, 1000);
+  setTimeout(injectHeader, 2500);
+  setTimeout(injectHeader, 4000);
+
+  onAuthStateChanged(auth, (user) => {
+    if(user){
+      applyLoggedState(user);
     }
-
-    // Observar cambios en header (por si React re-renderiza)
-    var observer = new MutationObserver(function(){
-      if(!document.getElementById('sj-google-login-root') && !document.getElementById('sj-google-logged-root')){
-        injectIntoHeader();
-      }
-    });
-    setTimeout(function(){
-      var header = document.querySelector('header');
-      if(header) observer.observe(header, {childList:true, subtree:true});
-    }, 1000);
-
-    // Helpers globales
-    window.getGoogleUser = function(){ try { return JSON.parse(localStorage.getItem('google_user')); } catch(e){ return null; } };
-    window.isGoogleLogged = function(){ return !!localStorage.getItem('google_user'); };
-    window.getGoogleIdToken = function(){ return localStorage.getItem('google_id_token'); };
-  })();
+  });
 </script>
-<!-- GOOGLE LOGIN PRO INTEGRADO EN HEADER - FIN -->
+<!-- FIN V2 -->
 
 </body>
 </html>
