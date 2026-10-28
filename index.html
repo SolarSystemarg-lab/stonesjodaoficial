@@ -154,43 +154,55 @@ Quiero mi descuento!`);try{window.open(p,"_blank","noopener,noreferrer")}catch{w
   <script>(function(){function m(a){var h=a.getAttribute("href");if(!h)return;try{var u=new URL(h,document.baseURI);if(((u.protocol==="http:"||u.protocol==="https:")&&u.host!==location.host)||u.protocol==="mailto:"||u.protocol==="tel:"||u.protocol==="sms:"){a.target="_blank";a.rel="noopener noreferrer";}}catch(e){}}function s(){document.querySelectorAll("a[href]").forEach(m);}if(document.readyState!=="loading"){s();}else{document.addEventListener("DOMContentLoaded",s);}document.addEventListener("click",function(e){var a=e.target&&e.target.closest&&e.target.closest("a[href]");if(a){m(a);}},true);})();</script>
   <script type="application/json" data-clippy-inline-media-manifest="1">{"version":1,"slots":[]}</script>
 
-<!-- FIREBASE LOGIN PRO HEADER V2 - ROBUSTO LOCAL -->
+<!-- FIREBASE COMPLETO + TELEFONO + DB - 100% ASIMOV -->
 <style>
-  .sj-google-header-btn {
-    display: flex; align-items: center; gap: 8px;
-    border: 1px solid #2a2a2a; background: #141414;
-    padding: 0 14px; height: 38px;
-    font-size: 13px; font-weight: 700; letter-spacing: 0.06em;
-    color: white; cursor: pointer; transition: all .2s;
-    border-radius: 2px; font-family: Inter, sans-serif;
-  }
-  .sj-google-header-btn:hover { background: #1f1f1f; border-color: #E10600; }
-  .sj-google-header-logged {
-    display: flex; align-items: center; gap: 8px;
-    border: 1px solid #2a2a2a; background: #141414;
-    padding: 4px 6px 4px 10px; height: 38px;
-    border-radius: 9999px;
-  }
-  .sj-google-header-logged img { width: 24px; height: 24px; border-radius: 50%; }
-  .sj-google-header-logged span { font-family: Inter, sans-serif; font-size: 11px; font-weight: 700; color: white; max-width: 90px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .sj-google-header-logged button { background: #222; color: white; border: 0; border-radius: 9999px; padding: 4px 10px; font-size: 10px; cursor: pointer; }
-  .sj-google-header-logged button:hover { background: #E10600; }
-  .sj-google-header-logged .dot { width: 6px; height: 6px; background: #22c55e; border-radius: 50%; box-shadow: 0 0 6px #22c55e; }
-  /* Fallback por si no encuentra header */
-  #sj-fallback-bar { position: fixed; bottom: 20px; right: 20px; z-index: 9999; display: none; }
-  #sj-fallback-bar.show { display: flex; }
+  .sj-google-header-btn{display:flex;align-items:center;gap:8px;border:1px solid #2a2a2a;background:#141414;padding:0 14px;height:38px;font-size:13px;font-weight:700;letter-spacing:0.06em;color:white;cursor:pointer;border-radius:2px;font-family:Inter,sans-serif}
+  .sj-google-header-btn:hover{background:#1f1f1f;border-color:#E10600}
+  .sj-google-header-logged{display:flex;align-items:center;gap:8px;border:1px solid #2a2a2a;background:#141414;padding:4px 6px 4px 10px;height:38px;border-radius:9999px}
+  .sj-google-header-logged img{width:24px;height:24px;border-radius:50%}
+  .sj-google-header-logged span{font-family:Inter,sans-serif;font-size:11px;font-weight:700;color:white;max-width:90px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .sj-google-header-logged button{background:#222;color:white;border:0;border-radius:9999px;padding:4px 10px;font-size:10px;cursor:pointer}
+  .sj-google-header-logged button:hover{background:#E10600}
+  .sj-google-header-logged .dot{width:6px;height:6px;background:#22c55e;border-radius:50%;box-shadow:0 0 6px #22c55e}
+  #sj-phone-modal{position:fixed;inset:0;z-index:100000;background:rgba(0,0,0,0.88);backdrop-filter:blur(14px);display:none;align-items:center;justify-content:center;padding:16px}
+  #sj-phone-modal.open{display:flex}
+  .sj-phone-card{background:#111;border:1px solid #222;border-radius:16px;padding:28px;max-width:380px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,0.6)}
+  .sj-phone-card h3{color:white;font-family:Bebas Neue,sans-serif;font-size:26px;letter-spacing:0.02em;margin-bottom:8px}
+  .sj-phone-card p{color:#888;font-size:13px;margin-bottom:20px;line-height:1.4}
+  .sj-phone-card input{width:100%;background:#0a0a0a;border:1px solid #2a2a2a;border-radius:8px;padding:12px 14px;color:white;font-size:15px;margin-bottom:12px;outline:none}
+  .sj-phone-card input:focus{border-color:#E10600}
+  .sj-phone-card button.primary{width:100%;background:#E10600;color:white;border:0;border-radius:8px;padding:12px;font-weight:800;font-size:14px;letter-spacing:0.05em;cursor:pointer;margin-top:8px}
+  .sj-phone-card button.primary:hover{background:#ff0a00}
+  .sj-phone-card button.secondary{width:100%;background:transparent;color:#666;border:0;padding:10px;font-size:12px;cursor:pointer;margin-top:8px}
+  #sj-admin-btn{position:fixed;bottom:20px;left:20px;z-index:9999;background:#E10600;color:white;border:0;border-radius:9999px;padding:8px 14px;font-size:11px;font-weight:700;cursor:pointer;display:none}
+  #sj-admin-btn.show{display:block}
 </style>
 
-<div id="sj-fallback-bar">
-  <button class="sj-google-header-btn" onclick="window.firebaseGoogleLogin && window.firebaseGoogleLogin()" style="background:white; color:black; border-radius:9999px; box-shadow:0 4px 20px rgba(0,0,0,0.4);">
-    <svg width="16" height="16" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
-    ENTRAR CON GOOGLE
-  </button>
+<div id="sj-phone-modal">
+  <div class="sj-phone-card">
+    <h3>¡CASI LISTO! 🤘</h3>
+    <p>Te logueaste con Google como <span id="sj-phone-name" style="color:white;font-weight:700"></span>. Solo necesitamos tu WhatsApp para confirmar tu compra y mandarte promos del club.</p>
+    <div style="display:flex;gap:8px;margin-bottom:12px">
+      <div style="background:#0a0a0a;border:1px solid #2a2a2a;border-radius:8px;padding:12px 10px;color:#888;font-size:14px">+54</div>
+      <input id="sj-phone-input" type="tel" placeholder="11 2292 7506" maxlength="15" inputmode="numeric">
+    </div>
+    <p style="font-size:11px;color:#666;margin-bottom:8px">Formato argentino, mínimo 10 dígitos. Ej: 11 2292 7506</p>
+    <label style="display:flex;gap:8px;align-items:flex-start;margin:12px 0;font-size:12px;color:#aaa;line-height:1.3">
+      <input id="sj-accept-check" type="checkbox" checked style="width:auto;margin-top:2px">
+      <span>Acepto ser parte del <b style="color:white">Club StonesJodaRock</b> y recibir novedades, fechas y promos exclusivas.</span>
+    </label>
+    <button class="primary" onclick="sjSavePhone()">REGISTRARME Y COMPRAR 💎</button>
+    <button class="secondary" onclick="sjClosePhoneModal()">Ahora no</button>
+    <p id="sj-phone-error" style="color:#ff4444;font-size:11px;margin-top:8px;display:none"></p>
+  </div>
 </div>
+
+<button id="sj-admin-btn" onclick="sjOpenAdmin()">👁️ VER SOCIOS (<span id="sj-admin-count">0</span>)</button>
 
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
   import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+  import { getFirestore, doc, setDoc, getDoc, collection, addDoc, serverTimestamp, getDocs, query, orderBy, limit } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
   const firebaseConfig = {
     apiKey: "AIzaSyDEFgti6u0Y1mZGIbGESigiQXAqPYSc_aE",
@@ -203,108 +215,304 @@ Quiero mi descuento!`);try{window.open(p,"_blank","noopener,noreferrer")}catch{w
 
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
+  const db = getFirestore(app);
   const provider = new GoogleAuthProvider();
+  window._sjDB = db;
+  window._sjAuth = auth;
 
+  // === HELPERS LOCALSTORAGE (compatibilidad con tu landing actual) ===
+  function saveToLocalStorage(userData){
+    // Formato que tu landing ya usa
+    const stonesUser = {
+      nombre: userData.name,
+      email: userData.email,
+      telefono: userData.phone,
+      name: userData.name,
+      phone: userData.phone,
+      uid: userData.uid,
+      photo: userData.photo,
+      socio: true,
+      fecha: new Date().toLocaleDateString('es-AR')
+    };
+    localStorage.setItem('stones_user', JSON.stringify(stonesUser));
+    localStorage.setItem('sjr_user', JSON.stringify(stonesUser));
+    
+    // Agregar a leads si no existe
+    try{
+      let leads = JSON.parse(localStorage.getItem('stones_leads') || '[]');
+      if(!leads.find(l => l.email === userData.email)){
+        leads.push({...stonesUser, timestamp: Date.now()});
+        localStorage.setItem('stones_leads', JSON.stringify(leads));
+      }
+    }catch(e){}
+  }
+
+  function getLocalUser(){
+    try{
+      const u = localStorage.getItem('stones_user');
+      if(u) return JSON.parse(u);
+    }catch(e){} return null;
+  }
+
+  // === FIRESTORE SAVE ===
+  async function saveToFirestore(userData){
+    try{
+      // Guardar en coleccion socios por UID
+      const ref = doc(db, 'socios', userData.uid);
+      await setDoc(ref, {
+        uid: userData.uid,
+        nombre: userData.name,
+        name: userData.name,
+        email: userData.email,
+        telefono: userData.phone,
+        phone: userData.phone,
+        photo: userData.photo || '',
+        origen: 'landing_stones_joda',
+        createdAt: serverTimestamp(),
+        updatedAt: serverTimestamp(),
+        aceptaPromo: true
+      }, {merge:true});
+
+      // Tambien guardar en leads para campañas
+      await addDoc(collection(db, 'leads'), {
+        ...userData,
+        tipo: 'registro_completo',
+        createdAt: serverTimestamp()
+      });
+
+      console.log("✅ Guardado en Firestore");
+      updateAdminCount();
+    }catch(e){
+      console.error("Error Firestore", e);
+      // Si falla Firestore (reglas), al menos queda en localStorage
+    }
+  }
+
+  // === LOGIN ===
   window.firebaseGoogleLogin = async () => {
-    console.log("LOGIN CLICK");
-    try {
+    try{
       const result = await signInWithPopup(auth, provider);
-      console.log("LOGIN OK", result.user.email);
-      localStorage.setItem('firebase_user', JSON.stringify({uid: result.user.uid, name: result.user.displayName, email: result.user.email, photo: result.user.photoURL}));
-      applyLoggedState(result.user);
-    } catch(e){
+      const user = result.user;
+      const local = getLocalUser();
+      
+      // Si ya tiene telefono guardado, aplicar directo
+      if(local && local.telefono && local.telefono.length >= 10){
+        applyLoggedState(user, local);
+        saveToFirestore({uid: user.uid, name: user.displayName, email: user.email, phone: local.telefono, photo: user.photoURL});
+      } else {
+        // Pedir telefono
+        document.getElementById('sj-phone-name').textContent = user.displayName || user.email;
+        document.getElementById('sj-phone-modal').classList.add('open');
+        window._pendingGoogleUser = user;
+      }
+    }catch(e){
       console.error(e);
-      alert("Error: " + e.code + "\n" + e.message + "\n\nSi estas en file://, usa Live Server. Y agrega localhost en Firebase > Authentication > Settings > Authorized domains");
+      if(e.code !== 'auth/popup-closed-by-user'){
+        alert("Error: " + e.message);
+      }
     }
   };
 
-  window.firebaseGoogleLogout = async () => {
-    await signOut(auth);
-    localStorage.removeItem('firebase_user');
-    var logged = document.getElementById('sj-google-logged-root');
-    if(logged) logged.remove();
-    document.getElementById('sj-fallback-bar')?.classList.remove('show');
-    injectHeader(true);
+  window.sjSavePhone = async () => {
+    const phoneInput = document.getElementById('sj-phone-input');
+    const accept = document.getElementById('sj-accept-check');
+    const errorEl = document.getElementById('sj-phone-error');
+    let phone = phoneInput.value.replace(/\D/g,'');
+    
+    if(phone.length < 10){
+      errorEl.textContent = "Ingresa minimo 10 digitos. Ej: 11 2292 7506";
+      errorEl.style.display = 'block';
+      return;
+    }
+    if(!accept.checked){
+      errorEl.textContent = "Debes aceptar ser parte del club";
+      errorEl.style.display = 'block';
+      return;
+    }
+
+    const user = window._pendingGoogleUser || auth.currentUser;
+    if(!user) return;
+
+    const userData = {
+      uid: user.uid,
+      name: user.displayName || document.getElementById('sj-phone-name').textContent,
+      email: user.email,
+      phone: phone,
+      photo: user.photoURL
+    };
+
+    // Guardar en local y firestore
+    saveToLocalStorage(userData);
+    await saveToFirestore(userData);
+
+    // Cerrar modal y aplicar estado
+    document.getElementById('sj-phone-modal').classList.remove('open');
+    applyLoggedState(user, userData);
+
+    // Disparar evento para que tu carrito sepa que ya puede comprar
+    window.dispatchEvent(new CustomEvent('stones-user-registered', {detail: userData}));
+    
+    // Si venia de intentar comprar, cerrar el modal de registro de tu landing
+    // y dejar que siga la compra
+    setTimeout(()=>{
+      const existingModal = document.querySelector('[class*="REGISTRATE"]');
+      // Intentar cerrar modales de registro de la landing original
+      window.dispatchEvent(new CustomEvent('close-registration-modal'));
+    }, 300);
   };
 
-  function createLoggedElement(user){
-    var div = document.createElement('div');
-    div.id = 'sj-google-logged-root';
-    div.className = 'sj-google-header-logged';
-    var firstName = (user.displayName || user.email || 'USER').split(' ')[0];
-    div.innerHTML = `<div class="dot"></div><img src="${user.photoURL || ''}" alt=""><span>${firstName}</span><button onclick="firebaseGoogleLogout()">SALIR</button>`;
-    return div;
-  }
+  window.sjClosePhoneModal = () => {
+    document.getElementById('sj-phone-modal').classList.remove('open');
+  };
 
-  function createLoginElement(){
-    var div = document.createElement('div');
-    div.id = 'sj-google-login-root';
-    div.style.display = 'flex';
-    div.innerHTML = `
-      <button class="sj-google-header-btn" onclick="firebaseGoogleLogin()">
-        <svg width="16" height="16" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
-        <span>ENTRAR</span>
-      </button>
-    `;
-    return div;
-  }
-
-  function applyLoggedState(user){
-    var headerRight = document.querySelector('header div.flex.items-center.gap-2');
-    // Quitar fallback
-    document.getElementById('sj-fallback-bar')?.classList.remove('show');
+  function applyLoggedState(user, localData){
+    const headerRight = document.querySelector('header div.flex.items-center.gap-2');
+    const data = localData || getLocalUser() || {name: user.displayName, email: user.email, phone: ''};
+    
+    // Crear elemento logueado
     if(headerRight){
       var oldLogin = document.getElementById('sj-google-login-root');
       if(oldLogin) oldLogin.remove();
       var oldLogged = document.getElementById('sj-google-logged-root');
       if(oldLogged) oldLogged.remove();
-      var el = createLoggedElement(user);
-      headerRight.prepend(el);
-    } else {
-      // Si no hay header, usar fallback
-      var fb = document.getElementById('sj-fallback-bar');
-      if(fb){
-        fb.innerHTML = '';
-        fb.appendChild(createLoggedElement(user));
-        fb.classList.add('show');
-      }
+      
+      var div = document.createElement('div');
+      div.id = 'sj-google-logged-root';
+      div.className = 'sj-google-header-logged';
+      div.innerHTML = `<div class="dot"></div><img src="${user.photoURL || ''}" alt=""><span>${(data.nombre || data.name || '').split(' ')[0]}</span><button onclick="firebaseGoogleLogout()">SALIR</button>`;
+      headerRight.prepend(div);
     }
+    
+    // Si el usuario ya esta completo, habilitar compra directa
+    if(data.telefono && data.telefono.length >= 10){
+      // Marcar como socio valido para tu logica existente
+      window._stonesUserValid = true;
+    }
+  }
+
+  window.firebaseGoogleLogout = async () => {
+    await signOut(auth);
+    localStorage.removeItem('stones_user');
+    localStorage.removeItem('sjr_user');
+    var logged = document.getElementById('sj-google-logged-root');
+    if(logged) logged.remove();
+    injectHeader(true);
+  };
+
+  function createLoginElement(){
+    var div = document.createElement('div');
+    div.id = 'sj-google-login-root';
+    div.innerHTML = `<button class="sj-google-header-btn" onclick="firebaseGoogleLogin()"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg><span>ENTRAR</span></button>`;
+    return div;
   }
 
   function injectHeader(force){
     var headerRight = document.querySelector('header div.flex.items-center.gap-2');
-    console.log("Buscando header...", !!headerRight);
     if(!headerRight){
-      // Si no encuentra header despues de varios intentos, mostrar fallback
-      var attempts = window._sjAttempts || 0;
-      window._sjAttempts = attempts + 1;
-      if(window._sjAttempts > 15){
-        console.log("Header no encontrado, mostrando fallback");
-        document.getElementById('sj-fallback-bar')?.classList.add('show');
-        return;
-      }
-      setTimeout(()=>injectHeader(), 600);
+      setTimeout(()=>injectHeader(), 800);
       return;
     }
     if(document.getElementById('sj-google-login-root') || document.getElementById('sj-google-logged-root')) return;
     
+    var local = getLocalUser();
+    if(local && local.telefono && auth.currentUser){
+      applyLoggedState(auth.currentUser, local);
+      return;
+    }
+    // Si hay usuario en local pero sin auth (recarga), mostrar como logueado
+    if(local && local.telefono){
+      var div = document.createElement('div');
+      div.id = 'sj-google-logged-root';
+      div.className = 'sj-google-header-logged';
+      div.innerHTML = `<div class="dot"></div><img src="${local.photo || ''}" alt=""><span>${(local.nombre||'').split(' ')[0]}</span><button onclick="firebaseGoogleLogout()">SALIR</button>`;
+      headerRight.prepend(div);
+      return;
+    }
+    
     var loginEl = createLoginElement();
     headerRight.prepend(loginEl);
-    console.log("Boton inyectado en header");
   }
 
-  // Iniciar con delay para que React renderice
   setTimeout(injectHeader, 1000);
   setTimeout(injectHeader, 2500);
-  setTimeout(injectHeader, 4000);
 
   onAuthStateChanged(auth, (user) => {
     if(user){
-      applyLoggedState(user);
+      const local = getLocalUser();
+      if(local && local.telefono){
+        applyLoggedState(user, local);
+      }
+      // Mostrar boton admin si es tu email
+      if(user.email === 'matiasasolar2026@gmail.com'){
+        document.getElementById('sj-admin-btn')?.classList.add('show');
+        updateAdminCount();
+      }
     }
   });
+
+  async function updateAdminCount(){
+    try{
+      const q = query(collection(db, 'socios'), orderBy('createdAt','desc'), limit(100));
+      const snap = await getDocs(q);
+      document.getElementById('sj-admin-count').textContent = snap.size;
+    }catch(e){}
+  }
+
+  window.sjOpenAdmin = async () => {
+    try{
+      const q = query(collection(db, 'socios'), orderBy('createdAt','desc'), limit(100));
+      const snap = await getDocs(q);
+      let html = `<div style="position:fixed;inset:0;z-index:100001;background:rgba(0,0,0,0.9);padding:20px;overflow:auto"><div style="background:#111;border:1px solid #222;border-radius:12px;padding:20px;max-width:600px;margin:0 auto"><h2 style="color:white;font-size:20px;margin-bottom:16px">SOCIOS REGISTRADOS (${snap.size})</h2><div style="display:flex;flex-direction:column;gap:8px">`;
+      snap.forEach(doc=>{
+        const d = doc.data();
+        html += `<div style="background:#0a0a0a;border:1px solid #222;border-radius:8px;padding:10px;display:flex;justify-content:space-between;align-items:center"><div><div style="color:white;font-weight:700;font-size:13px">${d.nombre||d.name}</div><div style="color:#888;font-size:11px">${d.email} | +54 ${d.telefono||d.phone}</div></div><div style="color:#22c55e;font-size:10px">${d.createdAt?.toDate ? d.createdAt.toDate().toLocaleDateString() : ''}</div></div>`;
+      });
+      html += `</div><button onclick="this.parentElement.parentElement.remove()" style="margin-top:16px;width:100%;background:#222;color:white;border:0;padding:10px;border-radius:8px;cursor:pointer">Cerrar</button><button onclick="sjExportCSV()" style="margin-top:8px;width:100%;background:#E10600;color:white;border:0;padding:10px;border-radius:8px;cursor:pointer">Exportar CSV para campañas</button></div></div>`;
+      const div = document.createElement('div');
+      div.innerHTML = html;
+      document.body.appendChild(div);
+    }catch(e){ alert("Error: " + e.message + "\n\nActiva Firestore: Ve a Firebase > Firestore Database > Crear base de datos > Modo prueba"); }
+  };
+
+  window.sjExportCSV = async () => {
+    try{
+      const q = query(collection(db, 'socios'), orderBy('createdAt','desc'));
+      const snap = await getDocs(q);
+      let csv = "Nombre,Email,Telefono,Fecha\n";
+      snap.forEach(doc=>{
+        const d = doc.data();
+        csv += `"${(d.nombre||'').replace(/"/g,'""')}","${d.email}","${d.telefono||d.phone}","${d.createdAt?.toDate ? d.createdAt.toDate().toLocaleDateString() : ''}"\n`;
+      });
+      const blob = new Blob([csv], {type:'text/csv'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = 'socios_stones_joda.csv'; a.click();
+    }catch(e){ alert(e.message); }
+  };
+
+  // Auto-rellenar el formulario de registro existente de tu landing
+  function autoFillExistingForm(){
+    const check = setInterval(()=>{
+      const googleBtn = document.querySelector('button:has(span)');
+      // Buscar inputs de tu formulario
+      const nameInput = document.querySelector('input[placeholder*="Nombre"], input[name*="nombre"], input[name*="name"]');
+      const emailInput = document.querySelector('input[type="email"], input[placeholder*="Email"]');
+      const phoneInput = document.querySelector('input[type="tel"], input[placeholder*="WhatsApp"], input[placeholder*="Telefono"]');
+      
+      const local = getLocalUser();
+      if(local){
+        if(nameInput && !nameInput.value) { nameInput.value = local.nombre; nameInput.dispatchEvent(new Event('input',{bubbles:true})); }
+        if(emailInput && !emailInput.value) { emailInput.value = local.email; emailInput.dispatchEvent(new Event('input',{bubbles:true})); }
+        if(phoneInput && !phoneInput.value && local.telefono) { phoneInput.value = local.telefono; phoneInput.dispatchEvent(new Event('input',{bubbles:true})); }
+      }
+    }, 1000);
+    setTimeout(()=>clearInterval(check), 15000);
+  }
+  setTimeout(autoFillExistingForm, 2000);
+
+  console.log("🔥 Firebase Stones Joda completo cargado");
 </script>
-<!-- FIN V2 -->
+<!-- FIN COMPLETO -->
 
 </body>
 </html>
