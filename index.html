@@ -1132,5 +1132,53 @@ console.log("✅ Sistema de Promociones visual + codigo integrado");
 </script>
 <!-- FIN SISTEMA PROMOCIONES -->
 
+
+<!-- FIREBASE PRODUCTOS REALTIME SYNC -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import { getFirestore, collection, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+  const firebaseConfig = {
+    apiKey: "AIzaSyDEFgti6u0Y1mZGIbGESigiQXAqPYSc_aE",
+    authDomain: "stones-joda-rock.firebaseapp.com",
+    projectId: "stones-joda-rock",
+    storageBucket: "stones-joda-rock.firebasestorage.app",
+    messagingSenderId: "649980351819",
+    appId: "1:649980351819:web:8c6a13a4768c5d1ee084ce"
+  };
+  let db;
+  try{
+    const app = initializeApp(firebaseConfig);
+    db = getFirestore(app);
+    window._sjDB = db;
+  }catch(e){ 
+    try{ 
+      const app2 = initializeApp(firebaseConfig, 'second');
+      db = getFirestore(app2);
+      window._sjDB = db;
+    }catch(e2){}
+  }
+  function escucharProductos(){
+    if(!window._sjDB) return;
+    try{
+      onSnapshot(collection(window._sjDB, 'productos'), (snap)=>{
+        const productos = [];
+        snap.forEach(d=>{ productos.push({id: d.id, ...d.data()}); });
+        if(productos.length>0){
+          localStorage.setItem('stones_products_v2', JSON.stringify(productos));
+          window.dispatchEvent(new CustomEvent('stones-products-updated', {detail: productos}));
+          console.log('Productos sincronizados:', productos.length);
+          // Si tu React usa window._stonesProducts, actualizarlo
+          window._stonesProducts = productos;
+          // Recargar si es necesario
+          if(window.location.reload && productos.length>=5){
+            // No recargar automatico, solo log
+          }
+        }
+      });
+    }catch(e){ console.log('Error productos', e); }
+  }
+  setTimeout(escucharProductos, 1500);
+</script>
+
 </body>
 </html>
