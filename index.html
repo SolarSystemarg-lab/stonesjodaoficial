@@ -736,5 +736,401 @@ Fecha: ${new Date().toLocaleDateString('es-AR')} ${new Date().toLocaleTimeString
 
 console.log("✅ Integracion StonesJodaRock 1126497125 con deteccion de socio activa");
 
+
+<!-- SISTEMA DE CODIGOS DE PROMOCION VISUAL + VALIDACION -->
+<style>
+  .promo-badge {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    background: linear-gradient(135deg, #FFD60A 0%, #FFC300 100%);
+    color: #000;
+    font-family: 'Anton', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    padding: 4px 8px;
+    border-radius: 6px;
+    z-index: 10;
+    box-shadow: 0 2px 8px rgba(255,214,0,0.4);
+    animation: promoPulse 2s infinite;
+  }
+  @keyframes promoPulse {
+    0%,100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+  }
+  .promo-badge.evento { background: linear-gradient(135deg, #E10600 0%, #FF3A00 100%); color: white; }
+  .promo-badge.evento-merch { background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%); color: #000; }
+  .promo-code-input {
+    width: 100%;
+    height: 44px;
+    background: #141414;
+    border: 1px solid #2a2a2a;
+    border-radius: 10px;
+    padding: 0 12px;
+    color: white;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    outline: none;
+  }
+  .promo-code-input:focus { border-color: #FFD60A; box-shadow: 0 0 0 3px rgba(255,214,0,0.15); }
+  .promo-valid { border-color: #00D26A !important; background: #00D26A10; }
+  .promo-invalid { border-color: #E10600 !important; background: #E1060010; }
+</style>
+<script>
+// === SISTEMA PROMOCIONES STONES JODA ===
+window.STONES_PROMOS = [];
+
+// Cargar promociones desde Firestore y localStorage
+async function cargarPromociones(){
+  let promos = [];
+  // 1. Desde localStorage (creadas desde Admin PRO V3)
+  try{
+    const localPromos = localStorage.getItem('stones_promociones');
+    if(localPromos){
+      promos = promos.concat(JSON.parse(localPromos));
+    }
+    const localPromos2 = localStorage.getItem('stones_promos');
+    if(localPromos2){
+      promos = promos.concat(JSON.parse(localPromos2));
+    }
+  }catch(e){}
+
+  // 2. Desde Firestore si existe
+  if(window._sjDB){
+    try{
+      const mod = await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js");
+      const { collection, getDocs } = mod;
+      const snap = await getDocs(collection(window._sjDB, 'promociones'));
+      snap.forEach(doc=>{
+        promos.push({id: doc.id, ...doc.data()});
+      });
+      console.log("Promos Firestore cargadas", promos.length);
+    }catch(e){ console.log("Firestore promos error", e); }
+  }
+
+  // Filtrar solo activas y vigentes
+  const ahora = new Date();
+  window.STONES_PROMOS = promos.filter(p=>{
+    if(p.estado === 'inactiva') return false;
+    if(p.fechaCaducacion){
+      const cad = new Date(p.fechaCaducacion);
+      if(cad < ahora) return false;
+    }
+    return true;
+  });
+
+  console.log("Promociones activas", window.STONES_PROMOS);
+  aplicarBadgesPromos();
+  return window.STONES_PROMOS;
+}
+
+function aplicarBadgesPromos(){
+  // Buscar todos los productos en el DOM y agregar badge si tiene promo
+  setTimeout(()=>{
+    const productosDOM = document.querySelectorAll('[data-product-id], [data-product], .product-card, [class*="product"]');
+    // Método alternativo: buscar por estructura de la tienda Stones
+    const allCards = document.querySelectorAll('div');
+    allCards.forEach(card=>{
+      // Detectar si es tarjeta de producto por contenido
+      const text = card.textContent || '';
+      const hasPrice = text.includes('$') && text.length < 500;
+      if(hasPrice && card.querySelector('img') && !card.querySelector('.promo-badge')){
+        // Intentar obtener nombre del producto
+        let nombreProducto = '';
+        const titleEl = card.querySelector('h3, h4, [class*="title"], [class*="name"]');
+        if(titleEl) nombreProducto = titleEl.textContent.toLowerCase();
+        else nombreProducto = (card.textContent || '').toLowerCase().substring(0,100);
+
+        // Buscar si alguna promo incluye este producto
+        for(let promo of window.STONES_PROMOS){
+          let incluye = false;
+          let origenRef = '';
+          
+          // Si promo tiene productos seleccionados
+          if(promo.productos && Array.isArray(promo.productos)){
+            for(let prod of promo.productos){
+              const prodName = (prod.nombre || prod.name || prod || '').toLowerCase();
+              if(prodName && nombreProducto.includes(prodName.substring(0,6))){
+                incluye = true;
+                origenRef = promo.nombre || promo.codigo || 'Promo Merch';
+                break;
+              }
+            }
+          }
+          // Si no tiene productos específicos, aplica a todos si tipo es merch
+          if(!incluye && promo.tipo && promo.tipo.toLowerCase().includes('merch') && (!promo.productos || promo.productos.length===0)){
+            incluye = true;
+            origenRef = promo.nombre || promo.codigo;
+          }
+          // Si es evento, no aplicar a merch (solo si producto es evento)
+          if(promo.tipo === 'eventos' && !nombreProducto.includes('passline') && !nombreProducto.includes('evento')){
+            incluye = false;
+          }
+
+          if(incluye){
+            const badge = document.createElement('div');
+            const tipoClass = promo.tipo ? promo.tipo.replace(/\s+/g,'-').toLowerCase() : '';
+            badge.className = `promo-badge ${tipoClass}`;
+            const descuento = promo.descuento ? `-${promo.descuento}%` : 'PROMO';
+            badge.innerHTML = `🔥 ${promo.codigo || 'PROMO'} ${descuento}<br><span style="font-size:8px; opacity:0.8">${origenRef.substring(0,20)}</span>`;
+            badge.title = `Codigo: ${promo.codigo} - Origen: ${promo.nombre} (${promo.tipo}) - Valido hasta: ${promo.fechaCaducacion || 'sin vencimiento'}`;
+            
+            // Hacer el card relative si no lo es
+            if(getComputedStyle(card).position === 'static'){
+              card.style.position = 'relative';
+            }
+            card.style.overflow = 'visible';
+            card.prepend(badge);
+            break; // Solo una promo por producto
+          }
+        }
+      }
+    });
+  }, 2000);
+}
+
+// Validar código de promoción en checkout
+window.validarCodigoPromo = function(codigoInput){
+  const codigo = (codigoInput || '').trim().toUpperCase();
+  if(!codigo){
+    return { valido: false, mensaje: 'Ingresá un código' };
+  }
+
+  const promo = window.STONES_PROMOS.find(p => (p.codigo||'').toUpperCase() === codigo);
+  if(!promo){
+    return { valido: false, mensaje: `Código ${codigo} no existe` };
+  }
+
+  // Validar fecha
+  if(promo.fechaCaducacion){
+    const cad = new Date(promo.fechaCaducacion);
+    if(cad < new Date()){
+      return { valido: false, mensaje: `Código ${codigo} vencido el ${cad.toLocaleDateString('es-AR')}` };
+    }
+  }
+
+  return { 
+    valido: true, 
+    promo: promo,
+    mensaje: `✅ ${codigo} aplicado - ${promo.descuento ? promo.descuento+'% OFF' : 'Promo activa'} - Origen: ${promo.nombre} (${promo.tipo}) - Ref: ${promo.origen || promo.tipo}`,
+    descuento: promo.descuento || 0,
+    origen: promo.nombre,
+    tipo: promo.tipo,
+    codigo: promo.codigo
+  };
+};
+
+// Aplicar descuento al carrito
+window.aplicarPromoACarrito = function(codigo){
+  const res = window.validarCodigoPromo(codigo);
+  const input = document.getElementById('promo-code-input');
+  const msgEl = document.getElementById('promo-code-msg');
+  
+  if(res.valido){
+    if(input){
+      input.classList.remove('promo-invalid');
+      input.classList.add('promo-valid');
+    }
+    if(msgEl){
+      msgEl.style.color = '#00D26A';
+      msgEl.innerHTML = `✅ <strong>${res.codigo}</strong> - ${res.descuento}% OFF<br><small style="opacity:0.8">Origen: ${res.origen} | Tipo: ${res.tipo}</small>`;
+    }
+    // Guardar promo aplicada
+    localStorage.setItem('stones_promo_aplicada', JSON.stringify(res.promo));
+    window._promoAplicada = res;
+    
+    // Recalcular total si hay función
+    if(window.recalcularTotalConPromo) window.recalcularTotalConPromo(res.descuento);
+    
+    // Mostrar toast
+    const toast = document.createElement('div');
+    toast.style.cssText = 'position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#00D26A;color:#000;padding:12px 20px;border-radius:9999px;font-size:13px;font-weight:800;z-index:99999;box-shadow:0 8px 20px rgba(0,210,106,0.4)';
+    toast.innerHTML = `🎉 Código ${res.codigo} aplicado - ${res.descuento}% OFF`;
+    document.body.appendChild(toast);
+    setTimeout(()=>toast.remove(), 4000);
+    
+    return res;
+  } else {
+    if(input){
+      input.classList.remove('promo-valid');
+      input.classList.add('promo-invalid');
+    }
+    if(msgEl){
+      msgEl.style.color = '#E10600';
+      msgEl.textContent = '❌ ' + res.mensaje;
+    }
+    localStorage.removeItem('stones_promo_aplicada');
+    window._promoAplicada = null;
+    return res;
+  }
+};
+
+// Inyectar input de código promo en el carrito/checkout
+function inyectarInputPromoEnCarrito(){
+  const carritos = document.querySelectorAll('div');
+  let injected = false;
+  carritos.forEach(div=>{
+    const txt = (div.textContent||'').toLowerCase();
+    // Buscar contenedor de total o checkout
+    if((txt.includes('total') && txt.includes('$') && div.children.length < 20 && !div.querySelector('#promo-code-input') && txt.length < 800) || 
+       (txt.includes('confirmar') && txt.includes('compra') && !document.getElementById('promo-code-input'))){
+      // Es probable que sea el área de checkout
+      if(div.querySelector('button') && div.textContent.includes('$') && !injected){
+        // Solo inyectar una vez
+        const promoContainer = document.createElement('div');
+        promoContainer.style.cssText = 'margin:12px 0; padding:12px; background:#141414; border:1px dashed #FFD60A; border-radius:12px;';
+        promoContainer.innerHTML = `
+          <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
+            <span style="font-size:14px">🎟️</span>
+            <span style="font-family:Anton, sans-serif; font-size:13px; letter-spacing:0.05em; color:#FFD60A">CÓDIGO PROMOCIÓN</span>
+          </div>
+          <div style="display:flex; gap:8px;">
+            <input id="promo-code-input" class="promo-code-input" placeholder="EJ: STONES20" maxlength="20" />
+            <button id="promo-apply-btn" style="height:44px; padding:0 16px; background:#FFD60A; color:#000; border:none; border-radius:10px; font-family:Anton; font-size:13px; letter-spacing:0.05em; font-weight:900; cursor:pointer;">APLICAR</button>
+          </div>
+          <div id="promo-code-msg" style="margin-top:8px; font-size:11px; font-family:Inter; min-height:16px;"></div>
+          <div style="margin-top:6px; font-size:10px; color:#666; font-family:Inter;">Origen: campaña activa | Ref: Admin PRO V3</div>
+        `;
+        div.prepend(promoContainer);
+        
+        const input = promoContainer.querySelector('#promo-code-input');
+        const btn = promoContainer.querySelector('#promo-apply-btn');
+        btn.onclick = ()=> window.aplicarPromoACarrito(input.value);
+        input.onkeydown = (e)=>{ if(e.key==='Enter') window.aplicarPromoACarrito(input.value); };
+        input.oninput = ()=>{ 
+          input.classList.remove('promo-valid','promo-invalid');
+          const msg = document.getElementById('promo-code-msg');
+          if(msg) msg.textContent='';
+        };
+        
+        injected = true;
+      }
+    }
+  });
+}
+
+// Inicializar
+document.addEventListener('DOMContentLoaded', ()=>{
+  cargarPromociones();
+  setInterval(inyectarInputPromoEnCarrito, 2000);
+  setTimeout(inyectarInputPromoEnCarrito, 1500);
+});
+
+// También cuando se abre el carrito
+let lastCartOpenCheck = 0;
+setInterval(()=>{
+  const carritoVisible = document.querySelector('div.fixed') && document.body.textContent.includes('CARRITO');
+  if(carritoVisible && Date.now() - lastCartOpenCheck > 3000){
+    lastCartOpenCheck = Date.now();
+    cargarPromociones();
+    inyectarInputPromoEnCarrito();
+  }
+}, 1000);
+
+// Override enviarPedido para incluir promo
+const originalEnviarPedido = window.enviarPedidoAStonesJoda;
+window.enviarPedidoAStonesJoda = function(){
+  const promoAplicada = window._promoAplicada || JSON.parse(localStorage.getItem('stones_promo_aplicada')||'null');
+  let mensajeExtra = '';
+  if(promoAplicada && promoAplicada.valido){
+    mensajeExtra = `\n\n🎟️ PROMO APLICADA: ${promoAplicada.codigo} - ${promoAplicada.descuento}% OFF\nOrigen: ${promoAplicada.origen} (${promoAplicada.tipo})\nRef: Campaña ${promoAplicada.origen}`;
+  }
+  
+  // Llamar original pero con extra
+  try{
+    const stonesUserStr = localStorage.getItem('stones_user');
+    const stonesUser = stonesUserStr ? JSON.parse(stonesUserStr) : null;
+    if(!stonesUser) { if(originalEnviarPedido) return originalEnviarPedido(); return; }
+
+    let carrito = [];
+    try{
+      const carritoStr = localStorage.getItem('stones_cart') || localStorage.getItem('sjr_cart') || localStorage.getItem('stones_carrito');
+      if(carritoStr) carrito = JSON.parse(carritoStr);
+    }catch(e){}
+    if(carrito.length === 0) carrito = window._stonesCart || [];
+
+    let productosTexto = "";
+    let total = 0;
+    let carritoTienePassline = false;
+    carrito.forEach(item=>{
+      const nombre = item.name || item.nombre || item.title || 'Producto';
+      const cantidad = item.quantity || item.cantidad || 1;
+      const precio = item.price || item.precio || 0;
+      total += (precio * cantidad);
+      productosTexto += `- ${nombre} x${cantidad}\n`;
+      const cat = (item.category || item.categoria || '').toLowerCase();
+      if(cat.includes('passline') || nombre.toLowerCase().includes('passline')) carritoTienePassline = true;
+    });
+
+    const nPedido = 'SJ-' + new Date().getFullYear() + '-' + Math.floor(Math.random()*9000 + 1000);
+    const esSocioActivo = stonesUser.esSocio === true || stonesUser.membresia === 'activa' || localStorage.getItem('stones_carnet') === 'true';
+    let estadoSocio = esSocioActivo ? "✅ SOCIO DEL CLUB - Passline ACTIVO" : carritoTienePassline ? "🆕 COMPRANDO PASSLINE" : "🛒 COMPRADOR DE MERCH - No es socio";
+    let titulo = esSocioActivo ? "🔥 NUEVO PEDIDO - SOCIO DEL CLUB PASSLINE" : carritoTienePassline ? "🆕 NUEVO SOCIO - COMPRANDO PASSLINE" : "🛒 NUEVO PEDIDO - COMPRADOR MERCH";
+
+    let totalFinal = total;
+    if(promoAplicada && promoAplicada.valido && promoAplicada.descuento){
+      const desc = total * (promoAplicada.descuento/100);
+      totalFinal = total - desc;
+      productosTexto += `Subtotal: $${total.toLocaleString('es-AR')}\nDescuento ${promoAplicada.codigo} (${promoAplicada.descuento}%): -$${desc.toLocaleString('es-AR')}\n`;
+    }
+
+    const mensaje = `Hola StonesJoda 🔥
+
+${titulo}
+ID: ${nPedido}
+
+${productosTexto}
+Total Final: $${totalFinal.toLocaleString('es-AR')}
+
+👤 Cliente: ${stonesUser.nombre || stonesUser.name} - ${stonesUser.email} - +54 ${stonesUser.telefono}
+📋 Estado: ${estadoSocio}${mensajeExtra}
+
+Origen: Tienda Oficial StonesJodaRock
+Fecha: ${new Date().toLocaleDateString('es-AR')} ${new Date().toLocaleTimeString('es-AR')}`;
+
+    const url = window.STONES_WHATSAPP_BASE + encodeURIComponent(mensaje);
+    window.open(url, '_blank', 'noopener,noreferrer');
+    
+    // Guardar en Firestore con promo
+    if(window._sjDB){
+      import("https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js").then(async (mod)=>{
+        const { doc, setDoc, serverTimestamp } = mod;
+        const pedidoRef = doc(window._sjDB, 'pedidos', nPedido);
+        await setDoc(pedidoRef, {
+          id: nPedido,
+          cliente: stonesUser.nombre,
+          email: stonesUser.email,
+          telefono: stonesUser.telefono,
+          esSocio: esSocioActivo,
+          productos: carrito,
+          total: total,
+          totalFinal: totalFinal,
+          promoAplicada: promoAplicada || null,
+          estadoSocio: estadoSocio,
+          mensaje: mensaje,
+          estado: 'Recepcion',
+          fecha: serverTimestamp(),
+          origen: esSocioActivo ? 'socio_activo' : carritoTienePassline ? 'nuevo_socio_passline' : 'comprador_merch'
+        });
+      });
+    }
+    
+    localStorage.removeItem('stones_cart');
+    localStorage.removeItem('sjr_cart');
+    localStorage.removeItem('stones_promo_aplicada');
+    window._promoAplicada = null;
+  }catch(e){
+    console.error(e);
+    if(originalEnviarPedido) originalEnviarPedido();
+  }
+};
+
+console.log("✅ Sistema de Promociones visual + codigo integrado");
+</script>
+<!-- FIN SISTEMA PROMOCIONES -->
+
 </body>
 </html>
