@@ -515,8 +515,9 @@ Quiero mi descuento!`);try{window.open(p,"_blank","noopener,noreferrer")}catch{w
 <!-- FIN COMPLETO -->
 
 
-<!-- INTEGRACION FINAL: WHATSAPP AUTO A STONESJODAROCK 1126497125 + DESACTIVAR REGISTRO VIEJO + FORMATO HOLA STONESJODA -->
-<script>
+
+
+
 // === CONFIGURACION WHATSAPP STONESJODAROCK ===
 window.STONES_WHATSAPP_NUMBER = "5491126497125"; // 11 2649 7125
 window.STONES_WHATSAPP_BASE = "https://wa.me/5491126497125?text=";
@@ -526,53 +527,106 @@ window.STONES_WHATSAPP_BASE = "https://wa.me/5491126497125?text=";
   const originalOpen = window.open;
   window.open = function(url, ...args){
     if(typeof url === 'string' && url.includes('wa.me')){
-      // Reemplazar cualquier "Hola Matias" por "Hola StonesJoda"
-      if(url.includes('Hola%20Matias') || url.includes('Hola Matias')){
-        url = url.replace(/Hola%20Matias/g, 'Hola%20StonesJoda').replace(/Hola Matias/g, 'Hola StonesJoda');
+      url = url.replace(/Hola%20Matias/g, 'Hola%20StonesJoda').replace(/Hola Matias/g, 'Hola StonesJoda');
+      url = url.replace('5491126497125', '5491126497125');
+      // Interceptar el mensaje viejo de NUEVO LEAD y reemplazarlo por el nuevo formato inteligente
+      if(url.toLowerCase().includes('nuevo%20lead') || url.toLowerCase().includes('nuevo lead')){
+        // No dejar que pase el mensaje viejo, construir el nuevo
+        console.log("Interceptando NUEVO LEAD viejo, usando nuevo formato");
+        // Obtener datos del usuario
+        try{
+          const stonesUserStr = localStorage.getItem('stones_user');
+          const stonesUser = stonesUserStr ? JSON.parse(stonesUserStr) : {nombre:'Stone Fan', email:'fan@example.com', telefono:'1122927506'};
+          const esSocio = stonesUser.esSocio || stonesUser.membresia === 'activa' || localStorage.getItem('stones_carnet') === 'true';
+          // Detectar si carrito tiene passline
+          let carritoTienePassline = false;
+          try{
+            const posiblesCarritos = ['stones_cart','sjr_cart','stones_carrito'];
+            for(let key of posiblesCarritos){
+              const str = localStorage.getItem(key);
+              if(str){
+                const c = JSON.parse(str);
+                if(Array.isArray(c) && c.some(item => {
+                  const cat = (item.category||item.categoria||'').toLowerCase();
+                  const name = (item.name||item.nombre||'').toLowerCase();
+                  return cat.includes('passline') || name.includes('passline');
+                })){
+                  carritoTienePassline = true;
+                }
+              }
+            }
+          }catch(e){}
+          
+          let estadoSocio;
+          if(esSocio){
+            estadoSocio = "✅ SOCIO DEL CLUB - Passline ACTIVO (beneficios vigentes)";
+          } else if(carritoTienePassline){
+            estadoSocio = "🆕 COMPRANDO PASSLINE - Nuevo socio (pendiente de pago/validacion)";
+          } else {
+            estadoSocio = "🛒 COMPRADOR DE MERCH - No es socio del club (solo merch)";
+          }
+
+          const mensajeNuevo = `Hola StonesJoda 🔥
+
+${esSocio ? '🔥 NUEVO PEDIDO - SOCIO DEL CLUB' : '🛒 NUEVO PEDIDO - COMPRADOR MERCH'}
+
+Nombre: ${stonesUser.nombre || stonesUser.name || 'Stone Fan'}
+Email: ${stonesUser.email || 'fan@example.com'}
+Tel: ${stonesUser.telefono || '1122927506'}
+Origen: CHECKOUT TIENDA - ${esSocio ? 'SOCIO ACTIVO' : 'COMPRADOR MERCH'}
+Fecha: ${new Date().toLocaleDateString('es-AR')} ${new Date().toLocaleTimeString('es-AR')}
+
+Estado: ${estadoSocio}
+
+${esSocio ? 'Tiene acceso a todos los eventos del club + invitado.' : 'Solo compra de merchandiser, no tiene beneficios del club.'}`;
+
+          url = window.STONES_WHATSAPP_BASE + encodeURIComponent(mensajeNuevo);
+        }catch(e){
+          console.log("Error interceptando lead", e);
+        }
       }
-      // Si es el numero viejo, ya lo reemplazamos arriba, pero asegurar
-      url = url.replace('5491122927506', '5491126497125');
     }
     return originalOpen.call(window, url, ...args);
   };
 })();
 
-// === FUNCION PARA ENVIAR PEDIDO COMPLETO A STONESJODAROCK ===
+// === FUNCION PARA ENVIAR PEDIDO COMPLETO A STONESJODAROCK CON DETECCION DE SOCIO ===
 window.enviarPedidoAStonesJoda = function(){
   try{
     const stonesUserStr = localStorage.getItem('stones_user');
     const stonesUser = stonesUserStr ? JSON.parse(stonesUserStr) : null;
     
     if(!stonesUser || !stonesUser.telefono){
-      // Si no hay usuario, forzar login con Google
       alert("Para comprar necesitas registrarte con Google. Dale a ENTRAR arriba.");
       if(window.firebaseGoogleLogin) window.firebaseGoogleLogin();
       return;
     }
 
-    // Obtener carrito del localStorage
     let carrito = [];
     try{
       const carritoStr = localStorage.getItem('stones_cart') || localStorage.getItem('sjr_cart') || localStorage.getItem('stones_carrito');
       if(carritoStr) carrito = JSON.parse(carritoStr);
     }catch(e){}
     
-    // Si no hay carrito en localStorage, intentar obtener del DOM
     if(carrito.length === 0){
-      // Buscar en el estado de React via window si existe
       carrito = window._stonesCart || [];
     }
 
-    // Construir mensaje con formato pedido
     let productosTexto = "";
     let total = 0;
+    let carritoTienePassline = false;
     if(carrito && carrito.length > 0){
-      carrito.forEach((item, idx)=>{
+      carrito.forEach((item)=>{
         const nombre = item.name || item.nombre || item.title || 'Producto';
         const cantidad = item.quantity || item.cantidad || 1;
         const precio = item.price || item.precio || 0;
         total += (precio * cantidad);
-        productosTexto += `- ${nombre} x${cantidad}\n`;
+        productosTexto += `- ${nombre} x${cantidad} ($${(precio*cantidad).toLocaleString('es-AR')})\n`;
+        const cat = (item.category || item.categoria || '').toLowerCase();
+        const nameL = (item.name || item.nombre || '').toLowerCase();
+        if(cat.includes('passline') || nameL.includes('passline')){
+          carritoTienePassline = true;
+        }
       });
     } else {
       productosTexto = "- Carrito consultado desde la tienda\n";
@@ -580,51 +634,70 @@ window.enviarPedidoAStonesJoda = function(){
 
     const nPedido = 'SJ-' + new Date().getFullYear() + '-' + Math.floor(Math.random()*9000 + 1000);
     
+    // Detectar si es socio del club con beneficios
+    const esSocioActivo = stonesUser.esSocio === true || stonesUser.membresia === 'activa' || localStorage.getItem('stones_carnet') === 'true' || stonesUser.passlineActivo === true;
+    
+    let estadoSocio;
+    let titulo;
+    if(esSocioActivo){
+      estadoSocio = "✅ SOCIO DEL CLUB - Passline ACTIVO (beneficios vigentes)";
+      titulo = "🔥 NUEVO PEDIDO - SOCIO DEL CLUB PASSLINE";
+    } else if(carritoTienePassline){
+      estadoSocio = "🆕 COMPRANDO PASSLINE - Nuevo socio (pendiente de pago/validacion)";
+      titulo = "🆕 NUEVO SOCIO - COMPRANDO PASSLINE";
+    } else {
+      estadoSocio = "🛒 COMPRADOR DE MERCH - No es socio del club (solo merchandiser)";
+      titulo = "🛒 NUEVO PEDIDO - COMPRADOR MERCH";
+    }
+
     const mensaje = `Hola StonesJoda 🔥
 
-Nuevo pedido ${nPedido} de Stones Joda Rock:
+${titulo}
+ID: ${nPedido}
 
 ${productosTexto}
 Total: $${total.toLocaleString('es-AR')}
 
-Socio: ${stonesUser.nombre || stonesUser.name} - ${stonesUser.email} - +54 ${stonesUser.telefono}
+👤 Datos del cliente:
+Nombre: ${stonesUser.nombre || stonesUser.name}
+Email: ${stonesUser.email}
+WhatsApp: +54 ${stonesUser.telefono}
+
+📋 Estado: ${estadoSocio}
+
+${esSocioActivo ? 'Beneficios: Entrada + 1 invitado a todos los eventos del club.' : carritoTienePassline ? 'Accion: Validar pago de Passline para activar beneficios.' : 'Nota: Solo compra de merch, no tiene beneficios del club.'}
 
 Origen: Tienda Oficial StonesJodaRock
-Fecha: ${new Date().toLocaleDateString('es-AR')} ${new Date().toLocaleTimeString('es-AR')}
-
-Passline: ${localStorage.getItem('stones_carnet') ? 'Si, ya es socio' : 'Consulta por Passline'}`;
+Fecha: ${new Date().toLocaleDateString('es-AR')} ${new Date().toLocaleTimeString('es-AR')}`;
 
     const url = window.STONES_WHATSAPP_BASE + encodeURIComponent(mensaje);
     
-    // Guardar pedido en Firestore si existe db
     if(window._sjDB){
       try{
-        const { doc, setDoc, serverTimestamp } = window._firebaseFirestore || {};
-        // Usar import dinamico si no esta
         import("https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js").then(async (mod)=>{
-          const { doc, setDoc, serverTimestamp, collection } = mod;
+          const { doc, setDoc, serverTimestamp } = mod;
           const pedidoRef = doc(window._sjDB, 'pedidos', nPedido);
           await setDoc(pedidoRef, {
             id: nPedido,
             cliente: stonesUser.nombre,
             email: stonesUser.email,
             telefono: stonesUser.telefono,
+            esSocio: esSocioActivo,
+            tienePasslineEnCarrito: carritoTienePassline,
+            estadoSocio: estadoSocio,
             productos: carrito,
             total: total,
             mensaje: mensaje,
             estado: 'Recepcion',
             fecha: serverTimestamp(),
-            origen: 'tienda_oficial'
+            origen: esSocioActivo ? 'socio_activo' : carritoTienePassline ? 'nuevo_socio_passline' : 'comprador_merch'
           });
-          console.log("Pedido guardado en Firestore", nPedido);
         });
       }catch(e){ console.log("Firestore pedido error", e); }
     }
 
-    // Abrir WhatsApp a StonesJodaRock
     window.open(url, '_blank', 'noopener,noreferrer');
     
-    // Vaciar carrito visualmente
     try{
       localStorage.removeItem('stones_cart');
       localStorage.removeItem('sjr_cart');
@@ -636,87 +709,32 @@ Passline: ${localStorage.getItem('stones_carnet') ? 'Si, ya es socio' : 'Consult
   }
 };
 
-// === DESACTIVAR FORMULARIO DE REGISTRO VIEJO - USAR SOLO GOOGLE + TELEFONO ===
+// === DESACTIVAR FORMULARIO DE REGISTRO VIEJO ===
 (function(){
   function desactivarRegistroViejo(){
-    // Buscar modales de registro viejo por texto
-    const allDivs = document.querySelectorAll('div, span, p, h2, h3, button');
-    allDivs.forEach(el=>{
-      const txt = (el.textContent || '').toLowerCase();
-      if(txt.includes('registrate para comprar') || txt.includes('registro de 10 segundos') || txt.includes('ya podes comprar directo como socio')){
-        // Si es un modal grande, ocultarlo y reemplazar por Google login
-        let parent = el.closest('div.fixed.inset-0');
-        if(parent && parent.querySelector('input')){
-          // Es el modal de registro viejo, lo ocultamos si ya hay usuario con Google
-          const stonesUser = localStorage.getItem('stones_user');
-          if(stonesUser){
-            try{
-              const u = JSON.parse(stonesUser);
-              if(u.telefono && u.telefono.length >= 10){
-                // Usuario ya completo, cerrar este modal
-                parent.style.display = 'none';
-              }
-            }catch(e){}
-          }
-        }
-      }
-    });
-
-    // Interceptar el boton CONFIRMAR COMPRA DE PRUEBA y reemplazar por envio real
     const confirmarBtns = document.querySelectorAll('button');
     confirmarBtns.forEach(btn=>{
       if(btn.textContent.includes('CONFIRMAR COMPRA DE PRUEBA')){
         btn.textContent = 'CONFIRMAR Y ENVIAR A STONESJODA';
-        btn.onclick = function(e){
-          e.preventDefault();
-          window.enviarPedidoAStonesJoda();
-        };
-        // Clonar para remover listeners viejos
         const newBtn = btn.cloneNode(true);
         newBtn.onclick = function(e){
           e.preventDefault();
           window.enviarPedidoAStonesJoda();
         };
-        btn.parentNode.replaceChild(newBtn, btn);
+        if(btn.parentNode) btn.parentNode.replaceChild(newBtn, btn);
+      }
+      // Tambien cambiar botones que digan COMPRAR que abren checkout viejo
+      if(btn.textContent.includes('CHECKOUT') || btn.textContent.toLowerCase().includes('finalizar compra')){
+        // No reemplazar estos, solo asegurar que el whatsapp nuevo se use
       }
     });
   }
-
-  // Ejecutar cada segundo por si React re-renderiza
   setInterval(desactivarRegistroViejo, 1000);
   setTimeout(desactivarRegistroViejo, 1500);
   setTimeout(desactivarRegistroViejo, 3000);
-
-  // Cuando se registra con Google+telefono, cerrar cualquier modal viejo
-  window.addEventListener('stones-user-registered', ()=>{
-    const modals = document.querySelectorAll('div.fixed.inset-0');
-    modals.forEach(m=>{
-      if(m.textContent.toLowerCase().includes('registrate')){
-        m.style.display = 'none';
-      }
-    });
-  });
 })();
 
-// === AUTO-RELLENAR CARRITO CON DATOS DEL SOCIO SI EXISTE ===
-(function(){
-  window.addEventListener('firebase-login-success', (e)=>{
-    console.log("Usuario logueado, datos disponibles para carrito", e.detail);
-  });
-  window.addEventListener('stones-user-registered', (e)=>{
-    console.log("Usuario registrado completo", e.detail);
-    // Notificar que ya puede comprar
-    const toast = document.createElement('div');
-    toast.style.cssText = 'position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#E10600;color:white;padding:12px 20px;border-radius:9999px;font-size:13px;font-weight:700;z-index:99999;box-shadow:0 8px 20px rgba(0,0,0,0.4)';
-    toast.textContent = '✅ Registro completo! Ya podes comprar';
-    document.body.appendChild(toast);
-    setTimeout(()=>toast.remove(), 4000);
-  });
-})();
-
-console.log("✅ Integracion StonesJodaRock 1126497125 activa - Hola StonesJoda");
-</script>
-<!-- FIN INTEGRACION FINAL -->
+console.log("✅ Integracion StonesJodaRock 1126497125 con deteccion de socio activa");
 
 </body>
 </html>
