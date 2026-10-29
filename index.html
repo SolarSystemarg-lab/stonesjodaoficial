@@ -216,5 +216,130 @@ Quiero mi descuento!`);try{window.open(p,"_blank","noopener,noreferrer")}catch{w
 })();
 </script>
 
+
+<script>
+// FIX CATEGORIAS - Solo las que existen en Firebase
+(function(){
+  // Categorias reales de Firebase - las 5 que creamos
+  const CATEGORIAS_REALES = [
+    { id: 'todo', label: 'TODO' },
+    { id: 'remeras', label: 'REMERAS' },
+    { id: 'zapatillas', label: 'ZAPATILLAS' },
+    { id: 'gorras', label: 'GORRAS' },
+    { id: 'bebidas', label: 'BEBIDAS' },
+    { id: 'passline', label: 'CLUB PASSLINE' }
+  ];
+  
+  // Mapeo de categorias viejas a nuevas
+  const MAPEO_CATEGORIAS = {
+    'barriles': 'bebidas',
+    'accesorios': 'bebidas',
+    'bebidas': 'bebidas',
+    'destacados': 'passline',
+    'destacado': 'passline'
+  };
+  
+  window.CATEGORIAS_OFICIALES = CATEGORIAS_REALES;
+  window.MAPEO_CATEGORIAS = MAPEO_CATEGORIAS;
+  
+  // Funcion para normalizar categoria de producto
+  window.normalizarCategoria = function(cat){
+    if(!cat) return 'bebidas';
+    const c = cat.toLowerCase().trim();
+    if(MAPEO_CATEGORIAS[c]) return MAPEO_CATEGORIAS[c];
+    if(c.includes('barril')) return 'bebidas';
+    if(c.includes('accesor')) return 'bebidas';
+    if(c.includes('destac')) return 'passline';
+    if(c.includes('remer')) return 'remeras';
+    if(c.includes('gorra')) return 'gorras';
+    if(c.includes('zapat')) return 'zapatillas';
+    if(c.includes('bebid')) return 'bebidas';
+    if(c.includes('passline') || c.includes('membres')) return 'passline';
+    return c;
+  };
+  
+  // Esperar a que cargue y limpiar botones
+  function limpiarFiltros(){
+    // Buscar todos los botones de categorias
+    const botones = document.querySelectorAll('button');
+    botones.forEach(btn=>{
+      const txt = (btn.textContent||'').trim().toUpperCase();
+      if(['bebidas','ACCESORIOS','BARRILES','DESTACADOS'].includes(txt)){
+        btn.style.display='none';
+        btn.remove();
+      }
+      // Cambiar DESTACADOS a PASSLINE si aparece
+      if(txt==='DESTACADOS' || txt==='DESTACADO'){
+        btn.textContent='CLUB PASSLINE';
+        btn.setAttribute('data-category','passline');
+      }
+      // Cambiar BARRILES a BEBIDAS
+      if(txt==='BARRILES'){
+        btn.textContent='BEBIDAS';
+        btn.setAttribute('data-category','bebidas');
+      }
+    });
+    
+    // Limpiar secciones destacadas
+    const secciones = document.querySelectorAll('*');
+    secciones.forEach(el=>{
+      const txt = (el.textContent||'').toUpperCase();
+      // Si es titulo de seccion DESTACADOS, cambiar a CLUB PASSLINE
+      if(el.tagName && ['H2','H3','H1'].includes(el.tagName)){
+        if(txt.includes('DESTACADOS') && !el.querySelector('button')){
+          // No tocar si es parte de boton
+          const parent = el.closest('[class*="destac"]');
+          if(parent && el.textContent.trim().toUpperCase()==='DESTACADOS'){
+            el.textContent = el.textContent.replace(/DESTACADOS/i, 'CLUB PASSLINE');
+          }
+        }
+      }
+    });
+  }
+  
+  // Ejecutar limpieza multiple veces
+  setTimeout(limpiarFiltros, 1000);
+  setTimeout(limpiarFiltros, 2000);
+  setTimeout(limpiarFiltros, 3500);
+  setInterval(limpiarFiltros, 3000);
+  
+  document.addEventListener('DOMContentLoaded', limpiarFiltros);
+})();
+</script>
+
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getFirestore, collection, onSnapshot, doc, updateDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+const cfg={apiKey:"AIzaSyDEFgti6u0Y1mZGIbGESigiQXAqPYSc_aE",authDomain:"stones-joda-rock.firebaseapp.com",projectId:"stones-joda-rock",storageBucket:"stones-joda-rock.firebasestorage.app",messagingSenderId:"649980351819",appId:"1:649980351819:web:8c6a13a4768c5d1ee084ce"};
+let db; try{const a=initializeApp(cfg, 'fix-cat'); db=getFirestore(a); window._sjDB_FIX=db;}catch(e){try{const a2=initializeApp(cfg, 'fix-cat-2'); db=getFirestore(a2); window._sjDB_FIX=db;}catch(e2){}}
+// Auto-fix productos mal categorizados en Firebase (solo si existen)
+async function fixCategoriasEnFirebase(){
+  if(!db) return;
+  try{
+    onSnapshot(collection(db, 'productos'), async (snap)=>{
+      snap.forEach(async (d)=>{
+        const data = d.data();
+        const catOriginal = (data.categoria||data.category||'').toLowerCase();
+        let nuevaCat = null;
+        if(catOriginal.includes('barril')) nuevaCat='bebidas';
+        else if(catOriginal.includes('accesor')) nuevaCat='bebidas';
+        else if(catOriginal.includes('destac')) nuevaCat='passline';
+        else if(catOriginal==='bebidas') nuevaCat='bebidas';
+        else if(catOriginal==='barriles') nuevaCat='bebidas';
+        else if(catOriginal==='accesorios') nuevaCat='bebidas';
+        else if(catOriginal==='destacados') nuevaCat='passline';
+        
+        if(nuevaCat && nuevaCat!==catOriginal){
+          console.log("Corrigiendo categoria:", d.id, catOriginal, "->", nuevaCat);
+          try{ await updateDoc(doc(db, 'productos', d.id), {categoria: nuevaCat, category: nuevaCat}); }catch(e){}
+        }
+      });
+    });
+  }catch(e){console.log("Error fix cats", e);}
+}
+setTimeout(fixCategoriasEnFirebase, 2500);
+</script>
+
 </body>
 </html>
