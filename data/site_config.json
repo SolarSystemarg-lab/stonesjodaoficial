@@ -1,0 +1,88 @@
+{
+  "homepage": {
+    "updatedBy": "admin",
+    "updatedAt": "2026-11-04",
+    "banner_principal": {
+      "activo": true,
+      "imagen": "banners/banner-invierno.jpg",
+      "titulo": "DROP STONEJODA BLACK",
+      "subtitulo": "Slogan StonesJoda",
+      "link": "categoria/remeras",
+      "posicion": 1
+    },
+    "banners_secundarios": [
+      {
+        "activo": true,
+        "imagen": "banners/banner-remeras.jpg",
+        "titulo": "REMERAS",
+        "link": "categoria/remeras",
+        "posicion": 1
+      },
+      {
+        "activo": true,
+        "imagen": "banners/banner-zapas.jpg",
+        "titulo": "ZAPATILLAS",
+        "link": "categoria/zapatillas",
+        "posicion": 2
+      },
+      {
+        "activo": true,
+        "imagen": "banners/banner-gorras.jpg",
+        "titulo": "GORRAS",
+        "link": "categoria/gorras",
+        "posicion": 3
+      },
+      {
+        "activo": true,
+        "imagen": "banners/banner-bebidas.jpg",
+        "titulo": "BEBIDAS",
+        "link": "categoria/bebidas",
+        "posicion": 4
+      },
+      {
+        "activo": true,
+        "imagen": "banners/banner-passline.jpg",
+        "titulo": "CLUB PASSLINE MENSUAL",
+        "link": "categoria/passline",
+        "posicion": 5
+      }
+    ],
+    "categorias_destacadas": [
+      "remeras",
+      "zapatillas",
+      "gorras",
+      "bebidas",
+      "passline"
+    ],
+    "config_landing": {
+      "cantidad_destacados": 8,
+      "mostrar_banner": true,
+      "mostrar_categorias": true,
+      "mostrar_destacados": true,
+      "mostrar_nuevos": true,
+      "mostrar_marcas": true
+    },
+    "productos_destacados_ids": [
+      "SJ-REM-001",
+      "SJ-REM-002",
+      "SJ-ZAP-001",
+      "SJ-GOR-001",
+      "SJ-BEB-001",
+      "SJ-PAS-001",
+      "SJ-REM-003",
+      "SJ-ZAP-002"
+    ],
+    "productos_nuevos_ids": [
+      "SJ-REM-008",
+      "SJ-ZAP-019",
+      "SJ-BEB-006",
+      "SJ-PAS-001"
+    ],
+    "texto_anuncio": "Envio gratis + 50k | 20 por ciento OFF con STONES20 | Club Passline Mensual 25k",
+    "texto_anuncio_activo": true,
+    "redes": {
+      "whatsapp": "1126497125",
+      "instagram_handle": "stonesjodaoficial"
+    }
+  }
+}
