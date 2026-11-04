@@ -1,0 +1,1059 @@
+[
+  {
+    "sku": "SJ-REM-001",
+    "id": "SJ-REM-001",
+    "nombre": "Remera StonesJoda 001 - Edicion 2025",
+    "name": "Remera StonesJoda 001",
+    "descripcion": "Remera oficial StonesJoda SJ-REM-001. 100% algodon peinado, estampa Stones + Joda. Disponible blanca y negra.",
+    "precio": 12000,
+    "precioBlanca": 12000,
+    "precioNegra": 18000,
+    "precioBase": 12000,
+    "categoria": "REMERAS",
+    "categoriaSlug": "remeras",
+    "imagen": "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/remeras/SJ-REM-001.jpeg",
+    "imagenUrl": "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/remeras/SJ-REM-001.jpeg",
+    "imagenes": [
+      "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/remeras/SJ-REM-001.jpeg"
+    ],
+    "stock": 70,
+    "posicion": 1,
+    "ubicacion": "A-01",
+    "activo": true,
+    "destacado": true,
+    "talles": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colores": [
+      "Blanca",
+      "Negra"
+    ],
+    "createdAt": "2026-11-04T00:00:00Z"
+  },
+  {
+    "sku": "SJ-REM-002",
+    "id": "SJ-REM-002",
+    "nombre": "Remera StonesJoda 002 - Edicion 2025",
+    "name": "Remera StonesJoda 002",
+    "descripcion": "Remera oficial StonesJoda SJ-REM-002. 100% algodon peinado, estampa Stones + Joda. Disponible blanca y negra.",
+    "precio": 12000,
+    "precioBlanca": 12000,
+    "precioNegra": 18000,
+    "precioBase": 12000,
+    "categoria": "REMERAS",
+    "categoriaSlug": "remeras",
+    "imagen": "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/remeras/SJ-REM-002.jpeg",
+    "imagenUrl": "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/remeras/SJ-REM-002.jpeg",
+    "imagenes": [
+      "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/remeras/SJ-REM-002.jpeg"
+    ],
+    "stock": 70,
+    "posicion": 2,
+    "ubicacion": "A-02",
+    "activo": true,
+    "destacado": true,
+    "talles": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colores": [
+      "Blanca",
+      "Negra"
+    ],
+    "createdAt": "2026-11-04T00:00:00Z"
+  },
+  {
+    "sku": "SJ-REM-003",
+    "id": "SJ-REM-003",
+    "nombre": "Remera StonesJoda 003 - Edicion 2025",
+    "name": "Remera StonesJoda 003",
+    "descripcion": "Remera oficial StonesJoda SJ-REM-003. 100% algodon peinado, estampa Stones + Joda. Disponible blanca y negra.",
+    "precio": 12000,
+    "precioBlanca": 12000,
+    "precioNegra": 18000,
+    "precioBase": 12000,
+    "categoria": "REMERAS",
+    "categoriaSlug": "remeras",
+    "imagen": "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/remeras/SJ-REM-003.jpeg",
+    "imagenUrl": "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/remeras/SJ-REM-003.jpeg",
+    "imagenes": [
+      "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/remeras/SJ-REM-003.jpeg"
+    ],
+    "stock": 70,
+    "posicion": 3,
+    "ubicacion": "A-03",
+    "activo": true,
+    "destacado": false,
+    "talles": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colores": [
+      "Blanca",
+      "Negra"
+    ],
+    "createdAt": "2026-11-04T00:00:00Z"
+  },
+  {
+    "sku": "SJ-REM-004",
+    "id": "SJ-REM-004",
+    "nombre": "Remera StonesJoda 004 - Edicion 2025",
+    "name": "Remera StonesJoda 004",
+    "descripcion": "Remera oficial StonesJoda SJ-REM-004. 100% algodon peinado, estampa Stones + Joda. Disponible blanca y negra.",
+    "precio": 12000,
+    "precioBlanca": 12000,
+    "precioNegra": 18000,
+    "precioBase": 12000,
+    "categoria": "REMERAS",
+    "categoriaSlug": "remeras",
+    "imagen": "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/remeras/SJ-REM-004.jpeg",
+    "imagenUrl": "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/remeras/SJ-REM-004.jpeg",
+    "imagenes": [
+      "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/remeras/SJ-REM-004.jpeg"
+    ],
+    "stock": 70,
+    "posicion": 4,
+    "ubicacion": "A-04",
+    "activo": true,
+    "destacado": false,
+    "talles": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colores": [
+      "Blanca",
+      "Negra"
+    ],
+    "createdAt": "2026-11-04T00:00:00Z"
+  },
+  {
+    "sku": "SJ-REM-005",
+    "id": "SJ-REM-005",
+    "nombre": "Remera StonesJoda 005 - Edicion 2025",
+    "name": "Remera StonesJoda 005",
+    "descripcion": "Remera oficial StonesJoda SJ-REM-005. 100% algodon peinado, estampa Stones + Joda. Disponible blanca y negra.",
+    "precio": 12000,
+    "precioBlanca": 12000,
+    "precioNegra": 18000,
+    "precioBase": 12000,
+    "categoria": "REMERAS",
+    "categoriaSlug": "remeras",
+    "imagen": "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/remeras/SJ-REM-005.jpeg",
+    "imagenUrl": "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/remeras/SJ-REM-005.jpeg",
+    "imagenes": [
+      "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/remeras/SJ-REM-005.jpeg"
+    ],
+    "stock": 70,
+    "posicion": 5,
+    "ubicacion": "A-05",
+    "activo": true,
+    "destacado": false,
+    "talles": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colores": [
+      "Blanca",
+      "Negra"
+    ],
+    "createdAt": "2026-11-04T00:00:00Z"
+  },
+  {
+    "sku": "SJ-REM-006",
+    "id": "SJ-REM-006",
+    "nombre": "Remera StonesJoda 006 - Edicion 2025",
+    "name": "Remera StonesJoda 006",
+    "descripcion": "Remera oficial StonesJoda SJ-REM-006. 100% algodon peinado, estampa Stones + Joda. Disponible blanca y negra.",
+    "precio": 12000,
+    "precioBlanca": 12000,
+    "precioNegra": 18000,
+    "precioBase": 12000,
+    "categoria": "REMERAS",
+    "categoriaSlug": "remeras",
+    "imagen": "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/remeras/SJ-REM-006.jpeg",
+    "imagenUrl": "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/remeras/SJ-REM-006.jpeg",
+    "imagenes": [
+      "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/remeras/SJ-REM-006.jpeg"
+    ],
+    "stock": 70,
+    "posicion": 6,
+    "ubicacion": "A-06",
+    "activo": true,
+    "destacado": false,
+    "talles": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colores": [
+      "Blanca",
+      "Negra"
+    ],
+    "createdAt": "2026-11-04T00:00:00Z"
+  },
+  {
+    "sku": "SJ-REM-007",
+    "id": "SJ-REM-007",
+    "nombre": "Remera StonesJoda 007 - Edicion 2025",
+    "name": "Remera StonesJoda 007",
+    "descripcion": "Remera oficial StonesJoda SJ-REM-007. 100% algodon peinado, estampa Stones + Joda. Disponible blanca y negra.",
+    "precio": 12000,
+    "precioBlanca": 12000,
+    "precioNegra": 18000,
+    "precioBase": 12000,
+    "categoria": "REMERAS",
+    "categoriaSlug": "remeras",
+    "imagen": "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/remeras/SJ-REM-007.jpeg",
+    "imagenUrl": "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/remeras/SJ-REM-007.jpeg",
+    "imagenes": [
+      "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/remeras/SJ-REM-007.jpeg"
+    ],
+    "stock": 70,
+    "posicion": 7,
+    "ubicacion": "A-07",
+    "activo": true,
+    "destacado": false,
+    "talles": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colores": [
+      "Blanca",
+      "Negra"
+    ],
+    "createdAt": "2026-11-04T00:00:00Z"
+  },
+  {
+    "sku": "SJ-REM-008",
+    "id": "SJ-REM-008",
+    "nombre": "Remera StonesJoda 008 - Edicion 2025",
+    "name": "Remera StonesJoda 008",
+    "descripcion": "Remera oficial StonesJoda SJ-REM-008. 100% algodon peinado, estampa Stones + Joda. Disponible blanca y negra.",
+    "precio": 12000,
+    "precioBlanca": 12000,
+    "precioNegra": 18000,
+    "precioBase": 12000,
+    "categoria": "REMERAS",
+    "categoriaSlug": "remeras",
+    "imagen": "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/remeras/SJ-REM-008.jpeg",
+    "imagenUrl": "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/remeras/SJ-REM-008.jpeg",
+    "imagenes": [
+      "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/remeras/SJ-REM-008.jpeg"
+    ],
+    "stock": 70,
+    "posicion": 8,
+    "ubicacion": "A-08",
+    "activo": true,
+    "destacado": false,
+    "talles": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colores": [
+      "Blanca",
+      "Negra"
+    ],
+    "createdAt": "2026-11-04T00:00:00Z"
+  },
+  {
+    "sku": "SJ-ZAP-001",
+    "id": "SJ-ZAP-001",
+    "nombre": "Zapatilla StonesJoda 001 - Runner",
+    "name": "Zapatilla SJ 001",
+    "descripcion": "Zapatilla urbana StonesJoda SJ-ZAP-001. Suela antideslizante, logo SJ bordado. Edicion limitada.",
+    "precio": 60000,
+    "categoria": "ZAPATILLAS",
+    "categoriaSlug": "zapatillas",
+    "imagen": "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/zapatillas/SJ-ZAP-001.jpeg",
+    "imagenUrl": "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/zapatillas/SJ-ZAP-001.jpeg",
+    "imagenes": [
+      "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/zapatillas/SJ-ZAP-001.jpeg"
+    ],
+    "stock": 10,
+    "posicion": 1,
+    "ubicacion": "B-01",
+    "activo": true,
+    "destacado": true,
+    "talles": [
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45
+    ],
+    "createdAt": "2026-11-04T00:00:00Z"
+  },
+  {
+    "sku": "SJ-ZAP-002",
+    "id": "SJ-ZAP-002",
+    "nombre": "Zapatilla StonesJoda 002 - Runner",
+    "name": "Zapatilla SJ 002",
+    "descripcion": "Zapatilla urbana StonesJoda SJ-ZAP-002. Suela antideslizante, logo SJ bordado. Edicion limitada.",
+    "precio": 60000,
+    "categoria": "ZAPATILLAS",
+    "categoriaSlug": "zapatillas",
+    "imagen": "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/zapatillas/SJ-ZAP-002.jpeg",
+    "imagenUrl": "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/zapatillas/SJ-ZAP-002.jpeg",
+    "imagenes": [
+      "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/zapatillas/SJ-ZAP-002.jpeg"
+    ],
+    "stock": 10,
+    "posicion": 2,
+    "ubicacion": "B-02",
+    "activo": true,
+    "destacado": true,
+    "talles": [
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45
+    ],
+    "createdAt": "2026-11-04T00:00:00Z"
+  },
+  {
+    "sku": "SJ-ZAP-003",
+    "id": "SJ-ZAP-003",
+    "nombre": "Zapatilla StonesJoda 003 - Runner",
+    "name": "Zapatilla SJ 003",
+    "descripcion": "Zapatilla urbana StonesJoda SJ-ZAP-003. Suela antideslizante, logo SJ bordado. Edicion limitada.",
+    "precio": 60000,
+    "categoria": "ZAPATILLAS",
+    "categoriaSlug": "zapatillas",
+    "imagen": "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/zapatillas/SJ-ZAP-003.jpeg",
+    "imagenUrl": "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/zapatillas/SJ-ZAP-003.jpeg",
+    "imagenes": [
+      "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/zapatillas/SJ-ZAP-003.jpeg"
+    ],
+    "stock": 10,
+    "posicion": 3,
+    "ubicacion": "B-03",
+    "activo": true,
+    "destacado": true,
+    "talles": [
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45
+    ],
+    "createdAt": "2026-11-04T00:00:00Z"
+  },
+  {
+    "sku": "SJ-ZAP-004",
+    "id": "SJ-ZAP-004",
+    "nombre": "Zapatilla StonesJoda 004 - Runner",
+    "name": "Zapatilla SJ 004",
+    "descripcion": "Zapatilla urbana StonesJoda SJ-ZAP-004. Suela antideslizante, logo SJ bordado. Edicion limitada.",
+    "precio": 60000,
+    "categoria": "ZAPATILLAS",
+    "categoriaSlug": "zapatillas",
+    "imagen": "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/zapatillas/SJ-ZAP-004.jpeg",
+    "imagenUrl": "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/zapatillas/SJ-ZAP-004.jpeg",
+    "imagenes": [
+      "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/zapatillas/SJ-ZAP-004.jpeg"
+    ],
+    "stock": 10,
+    "posicion": 4,
+    "ubicacion": "B-04",
+    "activo": true,
+    "destacado": false,
+    "talles": [
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45
+    ],
+    "createdAt": "2026-11-04T00:00:00Z"
+  },
+  {
+    "sku": "SJ-ZAP-005",
+    "id": "SJ-ZAP-005",
+    "nombre": "Zapatilla StonesJoda 005 - Runner",
+    "name": "Zapatilla SJ 005",
+    "descripcion": "Zapatilla urbana StonesJoda SJ-ZAP-005. Suela antideslizante, logo SJ bordado. Edicion limitada.",
+    "precio": 60000,
+    "categoria": "ZAPATILLAS",
+    "categoriaSlug": "zapatillas",
+    "imagen": "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/zapatillas/SJ-ZAP-005.jpeg",
+    "imagenUrl": "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/zapatillas/SJ-ZAP-005.jpeg",
+    "imagenes": [
+      "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/zapatillas/SJ-ZAP-005.jpeg"
+    ],
+    "stock": 10,
+    "posicion": 5,
+    "ubicacion": "B-05",
+    "activo": true,
+    "destacado": false,
+    "talles": [
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45
+    ],
+    "createdAt": "2026-11-04T00:00:00Z"
+  },
+  {
+    "sku": "SJ-ZAP-006",
+    "id": "SJ-ZAP-006",
+    "nombre": "Zapatilla StonesJoda 006 - Runner",
+    "name": "Zapatilla SJ 006",
+    "descripcion": "Zapatilla urbana StonesJoda SJ-ZAP-006. Suela antideslizante, logo SJ bordado. Edicion limitada.",
+    "precio": 60000,
+    "categoria": "ZAPATILLAS",
+    "categoriaSlug": "zapatillas",
+    "imagen": "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/zapatillas/SJ-ZAP-006.jpeg",
+    "imagenUrl": "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/zapatillas/SJ-ZAP-006.jpeg",
+    "imagenes": [
+      "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/zapatillas/SJ-ZAP-006.jpeg"
+    ],
+    "stock": 10,
+    "posicion": 6,
+    "ubicacion": "B-06",
+    "activo": true,
+    "destacado": false,
+    "talles": [
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45
+    ],
+    "createdAt": "2026-11-04T00:00:00Z"
+  },
+  {
+    "sku": "SJ-ZAP-007",
+    "id": "SJ-ZAP-007",
+    "nombre": "Zapatilla StonesJoda 007 - Runner",
+    "name": "Zapatilla SJ 007",
+    "descripcion": "Zapatilla urbana StonesJoda SJ-ZAP-007. Suela antideslizante, logo SJ bordado. Edicion limitada.",
+    "precio": 60000,
+    "categoria": "ZAPATILLAS",
+    "categoriaSlug": "zapatillas",
+    "imagen": "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/zapatillas/SJ-ZAP-007.jpeg",
+    "imagenUrl": "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/zapatillas/SJ-ZAP-007.jpeg",
+    "imagenes": [
+      "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/zapatillas/SJ-ZAP-007.jpeg"
+    ],
+    "stock": 10,
+    "posicion": 7,
+    "ubicacion": "B-07",
+    "activo": true,
+    "destacado": false,
+    "talles": [
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45
+    ],
+    "createdAt": "2026-11-04T00:00:00Z"
+  },
+  {
+    "sku": "SJ-ZAP-008",
+    "id": "SJ-ZAP-008",
+    "nombre": "Zapatilla StonesJoda 008 - Runner",
+    "name": "Zapatilla SJ 008",
+    "descripcion": "Zapatilla urbana StonesJoda SJ-ZAP-008. Suela antideslizante, logo SJ bordado. Edicion limitada.",
+    "precio": 60000,
+    "categoria": "ZAPATILLAS",
+    "categoriaSlug": "zapatillas",
+    "imagen": "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/zapatillas/SJ-ZAP-008.jpeg",
+    "imagenUrl": "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/zapatillas/SJ-ZAP-008.jpeg",
+    "imagenes": [
+      "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/zapatillas/SJ-ZAP-008.jpeg"
+    ],
+    "stock": 10,
+    "posicion": 8,
+    "ubicacion": "B-08",
+    "activo": true,
+    "destacado": false,
+    "talles": [
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45
+    ],
+    "createdAt": "2026-11-04T00:00:00Z"
+  },
+  {
+    "sku": "SJ-ZAP-009",
+    "id": "SJ-ZAP-009",
+    "nombre": "Zapatilla StonesJoda 009 - Runner",
+    "name": "Zapatilla SJ 009",
+    "descripcion": "Zapatilla urbana StonesJoda SJ-ZAP-009. Suela antideslizante, logo SJ bordado. Edicion limitada.",
+    "precio": 60000,
+    "categoria": "ZAPATILLAS",
+    "categoriaSlug": "zapatillas",
+    "imagen": "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/zapatillas/SJ-ZAP-009.jpeg",
+    "imagenUrl": "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/zapatillas/SJ-ZAP-009.jpeg",
+    "imagenes": [
+      "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/zapatillas/SJ-ZAP-009.jpeg"
+    ],
+    "stock": 10,
+    "posicion": 9,
+    "ubicacion": "B-09",
+    "activo": true,
+    "destacado": false,
+    "talles": [
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45
+    ],
+    "createdAt": "2026-11-04T00:00:00Z"
+  },
+  {
+    "sku": "SJ-ZAP-010",
+    "id": "SJ-ZAP-010",
+    "nombre": "Zapatilla StonesJoda 010 - Runner",
+    "name": "Zapatilla SJ 010",
+    "descripcion": "Zapatilla urbana StonesJoda SJ-ZAP-010. Suela antideslizante, logo SJ bordado. Edicion limitada.",
+    "precio": 60000,
+    "categoria": "ZAPATILLAS",
+    "categoriaSlug": "zapatillas",
+    "imagen": "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/zapatillas/SJ-ZAP-010.jpeg",
+    "imagenUrl": "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/zapatillas/SJ-ZAP-010.jpeg",
+    "imagenes": [
+      "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/zapatillas/SJ-ZAP-010.jpeg"
+    ],
+    "stock": 10,
+    "posicion": 10,
+    "ubicacion": "B-10",
+    "activo": true,
+    "destacado": false,
+    "talles": [
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45
+    ],
+    "createdAt": "2026-11-04T00:00:00Z"
+  },
+  {
+    "sku": "SJ-ZAP-011",
+    "id": "SJ-ZAP-011",
+    "nombre": "Zapatilla StonesJoda 011 - Runner",
+    "name": "Zapatilla SJ 011",
+    "descripcion": "Zapatilla urbana StonesJoda SJ-ZAP-011. Suela antideslizante, logo SJ bordado. Edicion limitada.",
+    "precio": 60000,
+    "categoria": "ZAPATILLAS",
+    "categoriaSlug": "zapatillas",
+    "imagen": "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/zapatillas/SJ-ZAP-011.jpeg",
+    "imagenUrl": "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/zapatillas/SJ-ZAP-011.jpeg",
+    "imagenes": [
+      "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/zapatillas/SJ-ZAP-011.jpeg"
+    ],
+    "stock": 10,
+    "posicion": 11,
+    "ubicacion": "B-11",
+    "activo": true,
+    "destacado": false,
+    "talles": [
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45
+    ],
+    "createdAt": "2026-11-04T00:00:00Z"
+  },
+  {
+    "sku": "SJ-ZAP-012",
+    "id": "SJ-ZAP-012",
+    "nombre": "Zapatilla StonesJoda 012 - Runner",
+    "name": "Zapatilla SJ 012",
+    "descripcion": "Zapatilla urbana StonesJoda SJ-ZAP-012. Suela antideslizante, logo SJ bordado. Edicion limitada.",
+    "precio": 60000,
+    "categoria": "ZAPATILLAS",
+    "categoriaSlug": "zapatillas",
+    "imagen": "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/zapatillas/SJ-ZAP-012.jpeg",
+    "imagenUrl": "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/zapatillas/SJ-ZAP-012.jpeg",
+    "imagenes": [
+      "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/zapatillas/SJ-ZAP-012.jpeg"
+    ],
+    "stock": 10,
+    "posicion": 12,
+    "ubicacion": "B-12",
+    "activo": true,
+    "destacado": false,
+    "talles": [
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45
+    ],
+    "createdAt": "2026-11-04T00:00:00Z"
+  },
+  {
+    "sku": "SJ-ZAP-013",
+    "id": "SJ-ZAP-013",
+    "nombre": "Zapatilla StonesJoda 013 - Runner",
+    "name": "Zapatilla SJ 013",
+    "descripcion": "Zapatilla urbana StonesJoda SJ-ZAP-013. Suela antideslizante, logo SJ bordado. Edicion limitada.",
+    "precio": 60000,
+    "categoria": "ZAPATILLAS",
+    "categoriaSlug": "zapatillas",
+    "imagen": "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/zapatillas/SJ-ZAP-013.jpeg",
+    "imagenUrl": "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/zapatillas/SJ-ZAP-013.jpeg",
+    "imagenes": [
+      "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/zapatillas/SJ-ZAP-013.jpeg"
+    ],
+    "stock": 10,
+    "posicion": 13,
+    "ubicacion": "B-13",
+    "activo": true,
+    "destacado": false,
+    "talles": [
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45
+    ],
+    "createdAt": "2026-11-04T00:00:00Z"
+  },
+  {
+    "sku": "SJ-ZAP-014",
+    "id": "SJ-ZAP-014",
+    "nombre": "Zapatilla StonesJoda 014 - Runner",
+    "name": "Zapatilla SJ 014",
+    "descripcion": "Zapatilla urbana StonesJoda SJ-ZAP-014. Suela antideslizante, logo SJ bordado. Edicion limitada.",
+    "precio": 60000,
+    "categoria": "ZAPATILLAS",
+    "categoriaSlug": "zapatillas",
+    "imagen": "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/zapatillas/SJ-ZAP-014.jpeg",
+    "imagenUrl": "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/zapatillas/SJ-ZAP-014.jpeg",
+    "imagenes": [
+      "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/zapatillas/SJ-ZAP-014.jpeg"
+    ],
+    "stock": 10,
+    "posicion": 14,
+    "ubicacion": "B-14",
+    "activo": true,
+    "destacado": false,
+    "talles": [
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45
+    ],
+    "createdAt": "2026-11-04T00:00:00Z"
+  },
+  {
+    "sku": "SJ-ZAP-015",
+    "id": "SJ-ZAP-015",
+    "nombre": "Zapatilla StonesJoda 015 - Runner",
+    "name": "Zapatilla SJ 015",
+    "descripcion": "Zapatilla urbana StonesJoda SJ-ZAP-015. Suela antideslizante, logo SJ bordado. Edicion limitada.",
+    "precio": 60000,
+    "categoria": "ZAPATILLAS",
+    "categoriaSlug": "zapatillas",
+    "imagen": "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/zapatillas/SJ-ZAP-015.jpeg",
+    "imagenUrl": "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/zapatillas/SJ-ZAP-015.jpeg",
+    "imagenes": [
+      "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/zapatillas/SJ-ZAP-015.jpeg"
+    ],
+    "stock": 10,
+    "posicion": 15,
+    "ubicacion": "B-15",
+    "activo": true,
+    "destacado": false,
+    "talles": [
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45
+    ],
+    "createdAt": "2026-11-04T00:00:00Z"
+  },
+  {
+    "sku": "SJ-ZAP-016",
+    "id": "SJ-ZAP-016",
+    "nombre": "Zapatilla StonesJoda 016 - Runner",
+    "name": "Zapatilla SJ 016",
+    "descripcion": "Zapatilla urbana StonesJoda SJ-ZAP-016. Suela antideslizante, logo SJ bordado. Edicion limitada.",
+    "precio": 60000,
+    "categoria": "ZAPATILLAS",
+    "categoriaSlug": "zapatillas",
+    "imagen": "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/zapatillas/SJ-ZAP-016.jpeg",
+    "imagenUrl": "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/zapatillas/SJ-ZAP-016.jpeg",
+    "imagenes": [
+      "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/zapatillas/SJ-ZAP-016.jpeg"
+    ],
+    "stock": 10,
+    "posicion": 16,
+    "ubicacion": "B-16",
+    "activo": true,
+    "destacado": false,
+    "talles": [
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45
+    ],
+    "createdAt": "2026-11-04T00:00:00Z"
+  },
+  {
+    "sku": "SJ-ZAP-017",
+    "id": "SJ-ZAP-017",
+    "nombre": "Zapatilla StonesJoda 017 - Runner",
+    "name": "Zapatilla SJ 017",
+    "descripcion": "Zapatilla urbana StonesJoda SJ-ZAP-017. Suela antideslizante, logo SJ bordado. Edicion limitada.",
+    "precio": 60000,
+    "categoria": "ZAPATILLAS",
+    "categoriaSlug": "zapatillas",
+    "imagen": "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/zapatillas/SJ-ZAP-017.jpeg",
+    "imagenUrl": "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/zapatillas/SJ-ZAP-017.jpeg",
+    "imagenes": [
+      "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/zapatillas/SJ-ZAP-017.jpeg"
+    ],
+    "stock": 10,
+    "posicion": 17,
+    "ubicacion": "B-17",
+    "activo": true,
+    "destacado": false,
+    "talles": [
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45
+    ],
+    "createdAt": "2026-11-04T00:00:00Z"
+  },
+  {
+    "sku": "SJ-ZAP-018",
+    "id": "SJ-ZAP-018",
+    "nombre": "Zapatilla StonesJoda 018 - Runner",
+    "name": "Zapatilla SJ 018",
+    "descripcion": "Zapatilla urbana StonesJoda SJ-ZAP-018. Suela antideslizante, logo SJ bordado. Edicion limitada.",
+    "precio": 60000,
+    "categoria": "ZAPATILLAS",
+    "categoriaSlug": "zapatillas",
+    "imagen": "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/zapatillas/SJ-ZAP-018.jpeg",
+    "imagenUrl": "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/zapatillas/SJ-ZAP-018.jpeg",
+    "imagenes": [
+      "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/zapatillas/SJ-ZAP-018.jpeg"
+    ],
+    "stock": 10,
+    "posicion": 18,
+    "ubicacion": "B-18",
+    "activo": true,
+    "destacado": false,
+    "talles": [
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45
+    ],
+    "createdAt": "2026-11-04T00:00:00Z"
+  },
+  {
+    "sku": "SJ-ZAP-019",
+    "id": "SJ-ZAP-019",
+    "nombre": "Zapatilla StonesJoda 019 - Runner",
+    "name": "Zapatilla SJ 019",
+    "descripcion": "Zapatilla urbana StonesJoda SJ-ZAP-019. Suela antideslizante, logo SJ bordado. Edicion limitada.",
+    "precio": 60000,
+    "categoria": "ZAPATILLAS",
+    "categoriaSlug": "zapatillas",
+    "imagen": "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/zapatillas/SJ-ZAP-019.jpeg",
+    "imagenUrl": "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/zapatillas/SJ-ZAP-019.jpeg",
+    "imagenes": [
+      "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/zapatillas/SJ-ZAP-019.jpeg"
+    ],
+    "stock": 10,
+    "posicion": 19,
+    "ubicacion": "B-19",
+    "activo": true,
+    "destacado": false,
+    "talles": [
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45
+    ],
+    "createdAt": "2026-11-04T00:00:00Z"
+  },
+  {
+    "sku": "SJ-GOR-001",
+    "id": "SJ-GOR-001",
+    "nombre": "Gorra StonesJoda 001 - Trucker Stones",
+    "name": "Gorra SJ 001",
+    "descripcion": "Gorra trucker oficial StonesJoda. Frente rojo SJ, malla negra, ajuste snapback.",
+    "precio": 10000,
+    "categoria": "GORRAS",
+    "categoriaSlug": "gorras",
+    "imagen": "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/gorras/SJ-GOR-001.JPEG",
+    "imagenUrl": "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/gorras/SJ-GOR-001.JPEG",
+    "imagenes": [
+      "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/gorras/SJ-GOR-001.JPEG"
+    ],
+    "stock": 30,
+    "posicion": 1,
+    "ubicacion": "C-01",
+    "activo": true,
+    "destacado": true,
+    "createdAt": "2026-11-04T00:00:00Z"
+  },
+  {
+    "sku": "SJ-BEB-001",
+    "id": "SJ-BEB-001",
+    "nombre": "Bebida StonesJoda 001 - Energy 500ml",
+    "name": "Bebida SJ 001",
+    "descripcion": "Bebida energizante StonesJoda SJ-BEB-001. Sabor Original, 500ml. Edicion coleccionable.",
+    "precio": 5000,
+    "sabor": "Original",
+    "volumen": "500ml",
+    "categoria": "BEBIDAS",
+    "categoriaSlug": "bebidas",
+    "imagen": "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/bebidas/SJ-BEB-001.jpeg",
+    "imagenUrl": "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/bebidas/SJ-BEB-001.jpeg",
+    "imagenes": [
+      "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/bebidas/SJ-BEB-001.jpeg"
+    ],
+    "stock": 50,
+    "posicion": 1,
+    "ubicacion": "D-01",
+    "activo": true,
+    "destacado": false,
+    "createdAt": "2026-11-04T00:00:00Z"
+  },
+  {
+    "sku": "SJ-BEB-002",
+    "id": "SJ-BEB-002",
+    "nombre": "Bebida StonesJoda 002 - Energy 500ml",
+    "name": "Bebida SJ 002",
+    "descripcion": "Bebida energizante StonesJoda SJ-BEB-002. Sabor Original, 500ml. Edicion coleccionable.",
+    "precio": 5000,
+    "sabor": "Original",
+    "volumen": "500ml",
+    "categoria": "BEBIDAS",
+    "categoriaSlug": "bebidas",
+    "imagen": "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/bebidas/SJ-BEB-002.jpeg",
+    "imagenUrl": "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/bebidas/SJ-BEB-002.jpeg",
+    "imagenes": [
+      "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/bebidas/SJ-BEB-002.jpeg"
+    ],
+    "stock": 50,
+    "posicion": 2,
+    "ubicacion": "D-02",
+    "activo": true,
+    "destacado": false,
+    "createdAt": "2026-11-04T00:00:00Z"
+  },
+  {
+    "sku": "SJ-BEB-003",
+    "id": "SJ-BEB-003",
+    "nombre": "Bebida StonesJoda 003 - Energy 500ml",
+    "name": "Bebida SJ 003",
+    "descripcion": "Bebida energizante StonesJoda SJ-BEB-003. Sabor Original, 500ml. Edicion coleccionable.",
+    "precio": 5000,
+    "sabor": "Original",
+    "volumen": "500ml",
+    "categoria": "BEBIDAS",
+    "categoriaSlug": "bebidas",
+    "imagen": "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/bebidas/SJ-BEB-003.jpeg",
+    "imagenUrl": "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/bebidas/SJ-BEB-003.jpeg",
+    "imagenes": [
+      "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/bebidas/SJ-BEB-003.jpeg"
+    ],
+    "stock": 50,
+    "posicion": 3,
+    "ubicacion": "D-03",
+    "activo": true,
+    "destacado": false,
+    "createdAt": "2026-11-04T00:00:00Z"
+  },
+  {
+    "sku": "SJ-BEB-004",
+    "id": "SJ-BEB-004",
+    "nombre": "Bebida StonesJoda 004 - Energy 500ml",
+    "name": "Bebida SJ 004",
+    "descripcion": "Bebida energizante StonesJoda SJ-BEB-004. Sabor Original, 500ml. Edicion coleccionable.",
+    "precio": 5000,
+    "sabor": "Original",
+    "volumen": "500ml",
+    "categoria": "BEBIDAS",
+    "categoriaSlug": "bebidas",
+    "imagen": "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/bebidas/SJ-BEB-004.jpeg",
+    "imagenUrl": "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/bebidas/SJ-BEB-004.jpeg",
+    "imagenes": [
+      "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/bebidas/SJ-BEB-004.jpeg"
+    ],
+    "stock": 50,
+    "posicion": 4,
+    "ubicacion": "D-04",
+    "activo": true,
+    "destacado": false,
+    "createdAt": "2026-11-04T00:00:00Z"
+  },
+  {
+    "sku": "SJ-BEB-005",
+    "id": "SJ-BEB-005",
+    "nombre": "Bebida StonesJoda 005 - Energy 500ml",
+    "name": "Bebida SJ 005",
+    "descripcion": "Bebida energizante StonesJoda SJ-BEB-005. Sabor Original, 500ml. Edicion coleccionable.",
+    "precio": 5000,
+    "sabor": "Original",
+    "volumen": "500ml",
+    "categoria": "BEBIDAS",
+    "categoriaSlug": "bebidas",
+    "imagen": "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/bebidas/SJ-BEB-005.jpeg",
+    "imagenUrl": "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/bebidas/SJ-BEB-005.jpeg",
+    "imagenes": [
+      "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/bebidas/SJ-BEB-005.jpeg"
+    ],
+    "stock": 50,
+    "posicion": 5,
+    "ubicacion": "D-05",
+    "activo": true,
+    "destacado": false,
+    "createdAt": "2026-11-04T00:00:00Z"
+  },
+  {
+    "sku": "SJ-BEB-006",
+    "id": "SJ-BEB-006",
+    "nombre": "Bebida StonesJoda 006 - Energy 500ml",
+    "name": "Bebida SJ 006",
+    "descripcion": "Bebida energizante StonesJoda SJ-BEB-006. Sabor Original, 500ml. Edicion coleccionable.",
+    "precio": 5000,
+    "sabor": "Original",
+    "volumen": "500ml",
+    "categoria": "BEBIDAS",
+    "categoriaSlug": "bebidas",
+    "imagen": "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/bebidas/SJ-BEB-006.jpeg",
+    "imagenUrl": "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/bebidas/SJ-BEB-006.jpeg",
+    "imagenes": [
+      "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/bebidas/SJ-BEB-006.jpeg"
+    ],
+    "stock": 50,
+    "posicion": 6,
+    "ubicacion": "D-06",
+    "activo": true,
+    "destacado": false,
+    "createdAt": "2026-11-04T00:00:00Z"
+  },
+  {
+    "sku": "SJ-PAS-001",
+    "id": "SJ-PAS-001",
+    "nombre": "Passline Mensual StonesJoda - Acceso VIP",
+    "name": "Passline Mensual SJ",
+    "descripcion": "Membresia mensual StonesJoda. Acceso VIP a eventos, 20% OFF merch, merch limitada mensual.",
+    "precio": 25000,
+    "categoria": "PASSLINE",
+    "categoriaSlug": "passline",
+    "imagen": "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/passline/SJ-PAS-001.jpg",
+    "imagenUrl": "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/passline/SJ-PAS-001.jpg",
+    "imagenes": [
+      "https://solarsystemarg-lab.github.io/stonesjodaoficial/images/passline/SJ-PAS-001.jpg"
+    ],
+    "stock": 999,
+    "posicion": 1,
+    "ubicacion": "E-01",
+    "activo": true,
+    "destacado": true,
+    "duracion": "Mensual",
+    "renovacion": "Mensual automatica",
+    "beneficios": [
+      "Acceso VIP eventos",
+      "20% OFF merch",
+      "Merch limitada"
+    ],
+    "tipoMembresia": "Mensual",
+    "createdAt": "2026-11-04T00:00:00Z"
+  }
+]

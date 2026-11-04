@@ -1,0 +1,26 @@
+[
+  {
+    "uid": "EJEMPLO-VIP-001",
+    "email": "vip@ejemplo.com",
+    "nombre": "Socio VIP Ejemplo",
+    "esVip": true,
+    "esSocio": true,
+    "membresia": "active",
+    "tipoMembresia": "Mensual",
+    "duracion": "Mensual",
+    "renovacion": "Mensual automatica",
+    "carnet": "SJ-CARNET-001",
+    "fechaInicio": "2026-11-04",
+    "fechaFin": "2026-12-04",
+    "fechaAlta": "2026-11-04",
+    "producto": "SJ-PAS-001",
+    "beneficios": [
+      "Acceso VIP eventos",
+      "20% OFF merch",
+      "Merch limitada"
+    ],
+    "estado": "Activo",
+    "pedidoId": "SJ-2026-0001",
+    "origen": "landing_v25_google"
+  }
+]
