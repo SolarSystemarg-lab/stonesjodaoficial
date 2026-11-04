@@ -1,0 +1,87 @@
+[
+  {
+    "id": "SJ-2026-0001",
+    "userId": "uaoUzIzhTNPY6u5tQqRzEibpJq1",
+    "userName": "Matias SOLAR",
+    "userEmail": "solarsystemarg@gmail.com",
+    "userPhone": "1126497125",
+    "userPhoto": "",
+    "esVip": false,
+    "carnet": "",
+    "origen": "landing_v28_google",
+    "productos": [
+      {
+        "sku": "SJ-REM-001",
+        "cantidad": 1,
+        "talla": "M",
+        "color": "Blanca"
+      },
+      {
+        "sku": "SJ-GOR-001",
+        "cantidad": 1
+      },
+      {
+        "sku": "SJ-ZAP-001",
+        "cantidad": 1,
+        "talle": 42
+      },
+      {
+        "sku": "SJ-BEB-001",
+        "cantidad": 2,
+        "volumen": "500ml"
+      },
+      {
+        "sku": "SJ-PAS-001",
+        "cantidad": 1
+      }
+    ],
+    "subtotal": 117000,
+    "descuento": 0,
+    "codigoPromo": "",
+    "totalFinal": 117000,
+    "metodoPago": "Transferencia",
+    "alias": "stonesjoda.mp",
+    "CBU": "00000031000123456789",
+    "comprobanteUrl": "",
+    "pagoVerificado": false,
+    "estado": "Recepcion",
+    "numeroRecepcion": "1126497125",
+    "createdAt": "2026-11-04",
+    "updatedAt": "2026-11-04"
+  },
+  {
+    "id": "SJ-2026-0002",
+    "userId": "VIP-EJEMPLO-001",
+    "userName": "Socio VIP Ejemplo",
+    "userEmail": "vip@ejemplo.com",
+    "userPhone": "1126497126",
+    "userPhoto": "",
+    "esVip": true,
+    "carnet": "SJ-CARNET-001",
+    "origen": "landing_v28_google",
+    "productos": [
+      {
+        "sku": "SJ-PAS-001",
+        "cantidad": 1
+      },
+      {
+        "sku": "SJ-REM-002",
+        "cantidad": 1,
+        "talla": "L",
+        "color": "Negra"
+      }
+    ],
+    "subtotal": 37000,
+    "descuento": 7400,
+    "codigoPromo": "STONES20",
+    "totalFinal": 29600,
+    "metodoPago": "Mercado Pago",
+    "alias": "stonesjoda.mp",
+    "comprobanteUrl": "",
+    "pagoVerificado": true,
+    "estado": "Preparacion",
+    "numeroRecepcion": "1126497125",
+    "createdAt": "2026-11-04",
+    "updatedAt": "2026-11-04"
+  }
+]
