@@ -1,0 +1,24 @@
+[
+  {
+    "uid": "uaoUzIzhTNPY6u5tQqRzEibpJq1",
+    "email": "solarsystemarg@gmail.com",
+    "nombre": "Matias SOLAR",
+    "photoURL": "",
+    "phone": "112997506",
+    "celfono": "112997506",
+    "rol": "admin",
+    "esSocio": true,
+    "aceptaPromo": true,
+    "origen": "landing_stones_oda",
+    "fechaAlta": "2026-10-28",
+    "membresia": {
+      "estado": "inactive",
+      "tipo": "none",
+      "carnet": "",
+      "fechaInicio": null,
+      "fechaFin": null,
+      "beneficios": [],
+      "pedidoId": ""
+    }
+  }
+]
