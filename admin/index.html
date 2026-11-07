@@ -1611,5 +1611,55 @@ Fecha: ${c.fecha}
 </script>
   <script>(function(){function m(a){var h=a.getAttribute("href");if(!h)return;try{var u=new URL(h,document.baseURI);if(((u.protocol==="http:"||u.protocol==="https:")&&u.host!==location.host)||u.protocol==="mailto:"||u.protocol==="tel:"||u.protocol==="sms:"){a.target="_blank";a.rel="noopener noreferrer";}}catch(e){}}function s(){document.querySelectorAll("a[href]").forEach(m);}if(document.readyState!=="loading"){s();}else{document.addEventListener("DOMContentLoaded",s);}document.addEventListener("click",function(e){var a=e.target&&e.target.closest&&e.target.closest("a[href]");if(a){m(a);}},true);})();</script>
   <script type="application/json" data-clippy-inline-media-manifest="1">{"version":1,"slots":[]}</script>
-<script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js"></script></body>
+<script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js"></script>
+<script>
+(function(){
+  function findBtn(txt){ return Array.from(document.querySelectorAll("button")).find(b=>b.textContent && b.textContent.toUpperCase().includes(txt)); }
+  function findInput(){ return document.querySelector('input[placeholder*="SJ-2"]') || document.querySelector('input[placeholder*="Ej:"]'); }
+  function scanNow(){
+    var video=document.querySelector("video");
+    if(!video){ alert("Primero abrí la cámara."); return; }
+    if(!window.jsQR){ alert("jsQR todavía no cargó. Esperá 2 segundos y probá de nuevo."); return; }
+    try{
+      var c=document.createElement("canvas"); c.width=video.videoWidth||640; c.height=video.videoHeight||480;
+      var ctx=c.getContext("2d"); ctx.drawImage(video,0,0,c.width,c.height);
+      var id=ctx.getImageData(0,0,c.width,c.height);
+      var r=window.jsQR(id.data,id.width,id.height,{inversionAttempts:"attemptBoth"});
+      if(!r){ alert("No pude leer el QR. Acercalo más, con más luz, y tenelo quieto."); return; }
+      var code=r.data.trim();
+      // Fill the manual code input and click LEER
+      var inp=findInput();
+      if(inp){
+        var setter=Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype,"value").set;
+        setter.call(inp, code);
+        inp.dispatchEvent(new Event("input",{bubbles:true}));
+        inp.dispatchEvent(new Event("change",{bubbles:true}));
+        // React needs native setter + input event, try also
+        var ev=new Event("input",{bubbles:true}); inp.dispatchEvent(ev);
+      }
+      setTimeout(function(){
+        var btn=findBtn("LEER ESTE CÓDIGO");
+        if(btn){ btn.click(); }
+        else { alert("QR leído: "+code+" - Pegalo en el campo y tocá LEER."); }
+      }, 250);
+    }catch(e){ alert("No pude leer el QR: "+e.message); }
+  }
+  // Add button when camera section appears, poll every 1s
+  setInterval(function(){
+    if(document.getElementById("btn-escanear-ahora")) return;
+    var video=document.querySelector("video");
+    if(!video || video.style.display==="none") return;
+    var container=video.closest("div");
+    if(!container) return;
+    var b=document.createElement("button");
+    b.id="btn-escanear-ahora";
+    b.textContent="📷 ESCANEAR QR AHORA - TOCAR PARA LEER";
+    b.style.cssText="width:100%;margin-top:12px;padding:16px;border-radius:14px;background:#FFD500;color:#000;font-weight:900;font-size:19px;border:none;cursor:pointer;";
+    b.onclick=scanNow;
+    container.parentNode.insertBefore(b, container.nextSibling);
+  }, 1000);
+  window.__scanQRNow=scanNow;
+})();
+</script>
+</body>
 </html>
