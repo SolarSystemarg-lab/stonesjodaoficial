@@ -1279,7 +1279,7 @@ button.rock{
 
 /* NITIDEZ: contorno negro nítido, SIN blur en el texto. El glow vive solo en box-shadow (bordes/cajas). */
 
-.rock,.rock-y,.rock-g,.rock-r,.on-yellow,.on-white{
+.rock,.rock-y,.rock-g,.rock-r{
   -webkit-font-smoothing:antialiased;
   text-rendering:optimizeLegibility;
   letter-spacing:.2px;
@@ -1313,12 +1313,16 @@ button.rock{
 
 .on-yellow{
   color:#000;
-  font-weight:900
+  font-weight:900;
+  text-shadow:none!important;
+  -webkit-text-stroke:0!important
 }
 
 .on-white{
   color:#000;
-  font-weight:900
+  font-weight:900;
+  text-shadow:none!important;
+  -webkit-text-stroke:0!important
 }
 
 /* Texto secundario: nunca gris clarito */
@@ -1352,8 +1356,8 @@ button.rock{
 
 .guide p,.guide b,.guide span{
   color:#000!important;
-  text-shadow:1px 0 0 #000,-1px 0 0 #000,0 1px 0 #000,0 -1px 0 #000!important;
-  -webkit-text-stroke:.6px #000;
+  text-shadow:none!important;
+  -webkit-text-stroke:0!important;
   font-weight:900;
   line-height:1.35;
   letter-spacing:.2px
@@ -1548,6 +1552,22 @@ button.rock{
 
 .glow{
   animation:glowPulse 1.2s ease-in-out infinite
+}
+
+/* LETRAS NEGRAS PLANAS: sin sombra, sin blur, sin glow y sin contorno.
+   Cubre botones/chips/popups/títulos sobre fondo amarillo o blanco,
+   incluidos los descendientes y los contenedores con fondo amarillo/blanco.
+   Las letras blancas/amarillas sobre fondo oscuro conservan su contorno fino nítido. */
+
+.on-yellow,.on-yellow *,
+.on-white,.on-white *,
+.guide,.guide *,
+[class*="bg-[#FFD400]"],[class*="bg-[#FFD400]"] *,
+.bg-white,.bg-white *,
+[class*="bg-white"],[class*="bg-white"] *{
+  text-shadow:none!important;
+  -webkit-text-stroke:0!important;
+  paint-order:normal
 }
 
 .focus\:border-\[\#FFD400\]:focus {
