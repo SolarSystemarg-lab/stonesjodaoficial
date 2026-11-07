@@ -1661,5 +1661,82 @@ Fecha: ${c.fecha}
   window.__scanQRNow=scanNow;
 })();
 </script>
+
+<style id="sj-porteria-fx">
+@keyframes sj-flash-green{0%{box-shadow:0 0 0 0 rgba(0,255,100,.9);}100%{box-shadow:0 0 0 22px rgba(0,255,100,0);}}
+@keyframes sj-pulse-confirm{0%,100%{transform:scale(1);box-shadow:0 0 0 0 rgba(255,213,0,.9);}50%{transform:scale(1.04);box-shadow:0 0 0 12px rgba(255,213,0,0);}}
+.sj-qr-detectado{animation:sj-flash-green .8s ease-out 3 !important;border-color:#00FF64 !important;}
+.sj-btn-confirmar{animation:sj-pulse-confirm 1s infinite !important;outline:4px solid #FFD500 !important;outline-offset:3px !important;}
+#sj-qr-banner{position:fixed;top:10px;left:50%;transform:translateX(-50%);z-index:9999;background:#00C853;color:#fff;font-weight:900;padding:14px 18px;border-radius:14px;font-size:18px;box-shadow:0 8px 30px rgba(0,0,0,.5);text-align:center;}
+</style>
+<script>
+(function(){
+  // Memoria extra en localStorage para los 4 QR de prueba + cualquier QR, para que YA INGRESO sobreviva aunque se recargue la vista
+  function getMem(){ try{ return JSON.parse(localStorage.getItem("sj_qr_ingresados")||"{}"); }catch(e){ return {}; } }
+  function saveMem(code){ var m=getMem(); if(!m[code]){ m[code]=new Date().toLocaleTimeString("es-AR"); localStorage.setItem("sj_qr_ingresados", JSON.stringify(m)); } return m[code]; }
+  function showBanner(txt, bg){
+    var old=document.getElementById("sj-qr-banner"); if(old) old.remove();
+    var d=document.createElement("div"); d.id="sj-qr-banner"; d.textContent=txt; if(bg) d.style.background=bg;
+    document.body.appendChild(d); setTimeout(function(){ d.remove(); }, 3500);
+  }
+  // 1) Efecto recuadro cuando se detecta: observamos que aparezca "CÓDIGO DETECTADO" o "PUEDE ENTRAR" o "YA INGRESARON"
+  var obs=new MutationObserver(function(){
+    var bodyTxt=document.body.innerText||"";
+    // Resaltar botón de confirmación cuando estamos en Paso 2
+    var btns=Array.from(document.querySelectorAll("button"));
+    var confirmar=btns.find(function(b){ return /CONFIRMAR.*(INGRESO|ACCESO|ENTRADA)|CONFIRMÁ|PUEDE ENTRAR|CONFIRMAR INGRESO/i.test(b.textContent||""); });
+    if(confirmar && !confirmar.classList.contains("sj-btn-confirmar")){
+      confirmar.classList.add("sj-btn-confirmar");
+      confirmar.scrollIntoView({behavior:"smooth", block:"center"});
+      showBanner("✅ QR DETECTADO - RECUADRADO - TOCÁ CONFIRMAR ACCESO", "#00C853");
+      try{ navigator.vibrate && navigator.vibrate([100,50,100]); }catch(e){}
+    }
+    // Si ya ingresó, banner rojo
+    if(/YA INGRESARON|ESTE QR YA/i.test(bodyTxt)){
+      var ya=document.querySelector("[data-sj-ya]");
+      // no repetir cada mutación: solo si no hay banner rojo visible
+      if(!document.getElementById("sj-qr-banner")){
+        // dejar que el cartel original se vea, solo avisar arriba
+      }
+    }
+    // Efecto en el video cuando se detecta
+    var video=document.querySelector("video");
+    if(video && /CÓDIGO DETECTADO|PUEDE ENTRAR/i.test(bodyTxt)){
+      var box=video.closest("div"); if(box) box.classList.add("sj-qr-detectado");
+    }
+  });
+  obs.observe(document.body, {childList:true, subtree:true, characterData:true});
+
+  // 2) Al apretar LEER ESTE CÓDIGO QR, llevar a Paso 2 y resaltar confirmar
+  document.addEventListener("click", function(e){
+    var b=e.target && e.target.closest && e.target.closest("button");
+    if(!b) return;
+    if(/LEER ESTE CÓDIGO/i.test(b.textContent||"")){
+      // Guardar en memoria localStorage el código del input
+      var inp=document.querySelector('input[placeholder*="SJ-2"]') || document.querySelector('input');
+      var code=inp && inp.value ? inp.value.trim().toUpperCase() : "";
+      if(code){
+        var mem=getMem();
+        if(mem[code]){
+          showBanner("⛔ ESTE USUARIO YA INGRESÓ - Hora: "+mem[code], "#D32F2F");
+        } else {
+          saveMem(code);
+          showBanner("✅ QR RECUADRADO - CÓDIGO: "+code+" - CARGADO EN PASO 2", "#00C853");
+        }
+      }
+      setTimeout(function(){
+        var btns=Array.from(document.querySelectorAll("button"));
+        var confirmar=btns.find(function(x){ return /CONFIRMAR.*(INGRESO|ACCESO|ENTRADA)|CONFIRMÁ/i.test(x.textContent||""); });
+        if(confirmar){ confirmar.classList.add("sj-btn-confirmar"); confirmar.scrollIntoView({behavior:"smooth", block:"center"}); }
+        // También hacer scroll al Paso 2 si hay título PUEDE ENTRAR / CÓDIGO SELECCIONADO
+        var el=Array.from(document.querySelectorAll("p,h2,h3,div")).find(function(x){ return /PUEDE ENTRAR|CÓDIGO SELECCIONADO|CONFIRMAR/i.test(x.textContent||"") && x.textContent.length<120; });
+        if(el) el.scrollIntoView({behavior:"smooth", block:"center"});
+      }, 600);
+    }
+    // Cuando se confirma ingreso, queda en memoria (ya guardado al leer)
+  }, true);
+  window.__sjMem=getMem;
+})();
+</script>
 </body>
 </html>
